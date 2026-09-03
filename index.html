@@ -1,0 +1,1767 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bujin's Grammar Dictionary — Англи хэлний дүрмийн албан ёсны толь бичиг</title>
+<meta name="description" content="Bujin's Grammar Dictionary — A1-ээс C2 хүртэлх англи хэлний дүрмийг нэг дор эмхэтгэсэн, хайлттай, албан ёсны онлайн лавлах толь бичиг.">
+<meta name="theme-color" content="#3E8A5C">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231C2430'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-weight='700' font-size='34' fill='%233E8A5C' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1C2430;
+    --ink-soft:#4A5568;
+    --paper:#FBF9F3;
+    --paper-raised:#FFFFFF;
+    --line:#E5DFD0;
+    --accent:#3E8A5C;
+    --accent-soft:#3E8A5C22;
+    --accent-softer:#3E8A5C10;
+    --bad:#B0413E;
+    --bad-soft:#B0413E1A;
+    --radius:16px;
+    --serif:'PT Serif', Georgia, serif;
+    --sans:'Manrope', -apple-system, sans-serif;
+    --display:'Baloo 2', 'Manrope', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    position:relative;
+  }
+  ::selection{ background:var(--accent-soft); }
+
+  a{ color:inherit; }
+
+  /* ---------- Playful floating background ---------- */
+  .bg-deco{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    overflow:hidden;
+    pointer-events:none;
+  }
+  .bg-deco::before{
+    content:"";
+    position:absolute; inset:-10%;
+    background:
+      radial-gradient(circle at 8% 12%, var(--accent-soft) 0%, transparent 34%),
+      radial-gradient(circle at 92% 20%, var(--accent-softer) 0%, transparent 30%),
+      radial-gradient(circle at 20% 92%, var(--accent-softer) 0%, transparent 28%),
+      radial-gradient(circle at 85% 88%, var(--accent-soft) 0%, transparent 32%);
+    transition:background 0.5s ease;
+  }
+  .bg-blob{
+    position:absolute;
+    border-radius:50%;
+    background:var(--accent);
+    opacity:.10;
+    transition:background .5s ease;
+    animation:floaty 14s ease-in-out infinite;
+  }
+  .bg-blob.b1{ width:260px; height:260px; top:-60px; left:-60px; animation-delay:0s; }
+  .bg-blob.b2{ width:180px; height:180px; top:20%; right:-70px; animation-delay:2s; }
+  .bg-blob.b3{ width:220px; height:220px; bottom:-80px; left:18%; animation-delay:4s; }
+  .bg-blob.b4{ width:140px; height:140px; bottom:10%; right:12%; animation-delay:1s; }
+  .bg-star{
+    position:absolute;
+    font-size:18px;
+    opacity:.35;
+    animation:twinkle 3.4s ease-in-out infinite;
+    filter:saturate(1.2);
+  }
+  @keyframes floaty{
+    0%,100%{ transform:translate(0,0) scale(1); }
+    50%{ transform:translate(18px,-22px) scale(1.06); }
+  }
+  @keyframes twinkle{
+    0%,100%{ opacity:.15; transform:scale(.85) rotate(0deg); }
+    50%{ opacity:.55; transform:scale(1.05) rotate(12deg); }
+  }
+
+  .shell, footer{ position:relative; z-index:1; }
+
+  /* ---------- Layout shell ---------- */
+  .shell{
+    display:grid;
+    grid-template-columns:264px 1fr;
+    min-height:100vh;
+  }
+  @media (max-width: 900px){
+    .shell{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- Sidebar ---------- */
+  .sidebar{
+    background:var(--paper-raised);
+    border-right:1px solid var(--line);
+    padding:28px 22px 28px;
+    position:sticky;
+    top:0;
+    height:100vh;
+    overflow-y:auto;
+  }
+  @media (max-width: 900px){
+    .sidebar{ position:relative; height:auto; border-right:none; border-bottom:1px solid var(--line); padding:20px; }
+  }
+  .brand{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    margin-bottom:22px;
+  }
+  .brand-row{
+    display:flex;
+    align-items:center;
+    gap:11px;
+  }
+  .brand-logo{
+    width:36px; height:36px;
+    flex-shrink:0;
+    border-radius:8px;
+    background:var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--serif);
+    font-weight:700;
+    font-size:19px;
+    color:var(--accent);
+    transition:color .35s ease;
+  }
+  .brand-word{ line-height:1.2; }
+  .brand-mark{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:20px;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+    white-space:nowrap;
+  }
+  .brand-mark span{ color:var(--accent); transition:color .35s ease; }
+  .brand-mark-sub{
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- Mode switch ---------- */
+  .mode-switch{
+    display:flex;
+    gap:6px;
+    background:var(--paper);
+    border:1.5px solid var(--line);
+    border-radius:14px;
+    padding:4px;
+    margin-bottom:18px;
+  }
+  .mode-btn{
+    all:unset;
+    flex:1;
+    text-align:center;
+    cursor:pointer;
+    font-family:var(--display);
+    font-weight:700;
+    font-size:13px;
+    color:var(--ink-soft);
+    padding:8px 6px;
+    border-radius:10px;
+    transition:background .18s ease, color .18s ease;
+  }
+  .mode-btn.active{
+    background:var(--accent);
+    color:#fff;
+  }
+
+  /* ---------- Mascot ---------- */
+  .mascot-wrap{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:14px 0 16px;
+    padding:10px 12px;
+    background:var(--accent-softer);
+    border:1px solid var(--accent-soft);
+    border-radius:var(--radius);
+    transition:background .35s ease, border-color .35s ease;
+  }
+  .mascot-svg{
+    width:52px; height:52px;
+    flex-shrink:0;
+    animation:mascotBob 2.6s ease-in-out infinite;
+  }
+  @keyframes mascotBob{
+    0%,100%{ transform:translateY(0) rotate(-2deg); }
+    50%{ transform:translateY(-5px) rotate(2deg); }
+  }
+  .mascot-speech{
+    font-family:var(--display);
+    font-size:12.5px;
+    font-weight:600;
+    color:var(--ink);
+    line-height:1.35;
+  }
+  .brand-sub{
+    font-size:12px;
+    color:var(--ink-soft);
+    padding-top:2px;
+    border-top:1px solid var(--line);
+  }
+  .brand-seal{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    font-size:10.5px;
+    font-weight:600;
+    color:var(--accent);
+    background:var(--accent-softer);
+    border:1px solid var(--accent-soft);
+    padding:3px 8px 3px 6px;
+    border-radius:20px;
+    margin-top:6px;
+    width:fit-content;
+    transition:color .35s ease, background .35s ease, border-color .35s ease;
+  }
+  .brand-seal svg{ width:11px; height:11px; }
+
+  .staircase{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+    margin-bottom:28px;
+  }
+  .step-btn{
+    all:unset;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px 12px;
+    border-radius:var(--radius);
+    border:1.5px solid var(--lv-color-soft);
+    background:var(--lv-color-softer);
+    transition:background .18s ease, border-color .18s ease, transform .18s ease, padding-left .18s ease;
+  }
+  .step-btn .lv-icon{
+    font-size:18px;
+    flex-shrink:0;
+    line-height:1;
+  }
+  .step-btn .lv-name{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:16px;
+    color:var(--lv-color);
+    min-width:30px;
+  }
+  .step-btn .lv-label{
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+  .step-btn:hover{ background:var(--lv-color-soft); transform:translateY(-1px) scale(1.015); }
+  .step-btn.active{
+    background:var(--lv-color-soft);
+    border-color:var(--lv-color);
+    padding-left:16px;
+    box-shadow:0 3px 0 0 var(--lv-color-border);
+  }
+  .step-btn.active .lv-label{ color:var(--ink); font-weight:600; }
+  /* stair indent effect */
+  .step-btn[data-i="0"]{ margin-left:0; }
+  .step-btn[data-i="1"]{ margin-left:5px; }
+  .step-btn[data-i="2"]{ margin-left:10px; }
+  .step-btn[data-i="3"]{ margin-left:15px; }
+  .step-btn[data-i="4"]{ margin-left:20px; }
+  .step-btn[data-i="5"]{ margin-left:25px; }
+
+  .sidebar-note{
+    font-size:12px;
+    color:var(--ink-soft);
+    border-top:1px solid var(--line);
+    padding-top:16px;
+    line-height:1.6;
+  }
+  .sidebar-note b{ color:var(--ink); }
+
+  /* ---------- Main ---------- */
+  .main{
+    padding:40px 48px 100px;
+    max-width:840px;
+  }
+  @media (max-width: 900px){
+    .main{ padding:28px 20px 80px; }
+  }
+
+  .search-row{
+    display:flex;
+    gap:10px;
+    margin-bottom:34px;
+  }
+  .search-box{
+    flex:1;
+    position:relative;
+  }
+  .search-box input{
+    width:100%;
+    font-family:var(--sans);
+    font-size:15px;
+    padding:13px 16px 13px 40px;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    background:var(--paper-raised);
+    color:var(--ink);
+    outline:none;
+    transition:border-color .18s ease;
+  }
+  .search-box input:focus{ border-color:var(--accent); }
+  .search-box svg{
+    position:absolute;
+    left:13px; top:50%;
+    transform:translateY(-50%);
+    width:16px; height:16px;
+    stroke:var(--ink-soft);
+  }
+
+  .level-head{
+    margin-bottom:28px;
+    padding-bottom:18px;
+    border-bottom:2px solid var(--line);
+  }
+  .level-head .eyebrow{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:13px;
+    color:var(--accent);
+    font-weight:700;
+    margin-bottom:6px;
+    transition:color .35s ease;
+  }
+  .level-head .eyebrow .dot{
+    width:7px;height:7px;border-radius:50%;
+    background:var(--accent);
+    transition:background .35s ease;
+  }
+  .level-head h1{
+    font-family:var(--display);
+    font-weight:800;
+    font-size:36px;
+    margin:0 0 6px;
+    letter-spacing:-0.01em;
+  }
+  .level-head p{
+    margin:0;
+    color:var(--ink-soft);
+    font-size:15px;
+    max-width:60ch;
+  }
+
+  .topic-count{
+    font-size:12.5px;
+    color:var(--ink-soft);
+    margin-bottom:18px;
+  }
+
+  /* ---------- Topic list (accordion) ---------- */
+  .topic{
+    background:var(--paper-raised);
+    border:1.5px solid var(--line);
+    border-radius:var(--radius);
+    margin-bottom:12px;
+    box-shadow:0 2px 0 0 rgba(28,36,48,.04);
+    transition:border-color .25s ease, box-shadow .25s ease, transform .18s ease;
+    overflow:hidden;
+  }
+  .topic:hover{
+    border-color:var(--accent-soft);
+    transform:translateY(-1px);
+    box-shadow:0 4px 10px -4px rgba(28,36,48,.12);
+  }
+  .topic.open{ border-color:var(--accent); }
+
+  .topic-header{
+    all:unset;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    width:100%;
+    padding:16px 16px;
+  }
+  .topic-num{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:13px;
+    color:#fff;
+    background:var(--accent);
+    width:26px; height:26px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+    transition:background .35s ease;
+  }
+  .topic-titles{ flex:1; min-width:0; }
+  .topic-titles .t-en{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:17px;
+    color:var(--ink);
+  }
+  .topic-titles .t-mn{
+    font-size:13px;
+    color:var(--ink-soft);
+    margin-top:2px;
+  }
+  .topic-level-chip{
+    font-size:10.5px;
+    font-weight:700;
+    padding:3px 8px;
+    border-radius:20px;
+    flex-shrink:0;
+    display:none;
+  }
+  .search-active .topic-level-chip{ display:inline-block; }
+
+  .chevron{
+    flex-shrink:0;
+    width:18px; height:18px;
+    stroke:var(--ink-soft);
+    transition:transform .25s ease;
+  }
+  .topic.open .chevron{ transform:rotate(180deg); }
+
+  .topic-body{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .32s cubic-bezier(.4,0,.2,1);
+  }
+  .topic-body-inner{
+    padding:2px 18px 22px 56px;
+  }
+
+  .block-label{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:12.5px;
+    font-weight:700;
+    color:var(--accent);
+    text-transform:none;
+    margin:16px 0 8px;
+    transition:color .35s ease;
+  }
+  .block-label:first-child{ margin-top:2px; }
+  .block-label .en{ color:var(--ink-soft); font-weight:500; font-style:italic; }
+
+  .formation-box{
+    background:var(--accent-softer);
+    border:1.5px dashed var(--accent-soft);
+    border-radius:12px;
+    padding:12px 16px;
+    font-family:'Courier New', monospace;
+    font-size:13.5px;
+    color:#2A2A2A;
+    line-height:1.65;
+    transition:border-color .35s ease, background .35s ease;
+  }
+
+  .usage-list{
+    margin:0;
+    padding-left:18px;
+  }
+  .usage-list li{
+    font-size:14.5px;
+    color:#333;
+    margin-bottom:7px;
+    line-height:1.55;
+  }
+  .usage-list li::marker{ color:var(--accent); }
+
+  .example{
+    background:#FFFBF0;
+    border:1.5px solid #F0E2B6;
+    border-radius:12px;
+    padding:10px 14px;
+    margin-bottom:9px;
+  }
+  .example .ex-en{
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:700;
+    font-size:14.5px;
+    color:var(--ink);
+  }
+  .example .ex-mn{
+    font-size:13.5px;
+    color:#4A4A4A;
+    margin-top:3px;
+  }
+  .example .ex-mn::before{ content:"— "; color:#999; }
+
+  mark{
+    background:#FDECC1;
+    color:inherit;
+    border-radius:2px;
+    padding:0 1px;
+  }
+
+  .empty-state{
+    padding:60px 10px;
+    text-align:center;
+    color:var(--ink-soft);
+  }
+  .empty-state h3{
+    font-family:var(--serif);
+    color:var(--ink);
+    font-size:19px;
+    margin-bottom:6px;
+  }
+
+  footer{
+    max-width:840px;
+    padding:30px 48px 60px;
+    color:var(--ink-soft);
+    font-size:12.5px;
+    border-top:1px solid var(--line);
+    margin-top:20px;
+  }
+  @media (max-width: 900px){ footer{ padding:24px 20px 50px; } }
+
+  /* ---------- Celebration popup ---------- */
+  .celebrate-pop{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    display:flex;
+    align-items:flex-end;
+    gap:8px;
+    z-index:50;
+    pointer-events:none;
+    opacity:0;
+    transform:translateY(18px) scale(.9);
+    transition:opacity .28s cubic-bezier(.34,1.56,.64,1), transform .28s cubic-bezier(.34,1.56,.64,1);
+  }
+  .celebrate-pop.show{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+  .celebrate-bubble{
+    background:var(--ink);
+    color:#fff;
+    font-family:var(--display);
+    font-weight:600;
+    font-size:13px;
+    padding:10px 14px;
+    border-radius:14px 14px 4px 14px;
+    max-width:210px;
+    box-shadow:0 8px 20px -6px rgba(0,0,0,.35);
+  }
+  .celebrate-mascot{
+    width:64px; height:64px;
+    flex-shrink:0;
+    filter:drop-shadow(0 6px 10px rgba(0,0,0,.18));
+  }
+  @media (max-width:640px){
+    .celebrate-pop{ right:12px; bottom:12px; }
+    .celebrate-bubble{ max-width:150px; font-size:12px; }
+    .celebrate-mascot{ width:52px; height:52px; }
+  }
+
+  .sparkle{
+    position:fixed;
+    z-index:49;
+    pointer-events:none;
+    font-size:16px;
+    animation:sparklePop .7s ease-out forwards;
+  }
+  @keyframes sparklePop{
+    0%{ opacity:1; transform:translate(0,0) scale(.4) rotate(0deg); }
+    100%{ opacity:0; transform:var(--sp-end) scale(1.1) rotate(90deg); }
+  }
+
+  /* ---------- Quiz mode ---------- */
+  .hidden{ display:none !important; }
+
+  .quiz-level-filter{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:22px;
+  }
+  .lvl-chip{
+    border:1.5px solid var(--line);
+    background:var(--paper-raised);
+    color:var(--ink-soft);
+    font-family:var(--display);
+    font-size:12.5px;
+    font-weight:700;
+    padding:7px 14px;
+    border-radius:20px;
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  .lvl-chip.active{
+    background:var(--accent);
+    border-color:var(--accent);
+    color:#fff;
+  }
+
+  .quiz-progress-bar{
+    height:8px;
+    background:var(--line);
+    border-radius:20px;
+    overflow:hidden;
+    margin-bottom:24px;
+  }
+  .quiz-progress-fill{
+    height:100%;
+    background:var(--accent);
+    width:0%;
+    transition:width .3s ease;
+  }
+
+  .quiz-card{
+    background:var(--paper-raised);
+    border:1.5px solid var(--line);
+    border-radius:var(--radius);
+    padding:26px 24px;
+    box-shadow:0 3px 0 0 rgba(28,36,48,.05);
+  }
+
+  .q-level{
+    display:inline-block;
+    font-family:var(--display);
+    font-size:11.5px;
+    font-weight:700;
+    color:var(--accent);
+    background:var(--accent-softer);
+    border:1px solid var(--accent-soft);
+    padding:3px 10px;
+    border-radius:20px;
+    margin-bottom:12px;
+  }
+  .q-count{ font-size:12.5px; color:var(--ink-soft); margin-bottom:10px; }
+  .q-prompt{ font-family:var(--serif); font-size:19px; font-weight:700; margin:6px 0 20px; line-height:1.5; }
+
+  .opt{
+    display:block;
+    width:100%;
+    text-align:left;
+    background:var(--paper);
+    border:1.5px solid var(--line);
+    border-radius:12px;
+    padding:13px 15px;
+    font-size:14.5px;
+    color:var(--ink);
+    cursor:pointer;
+    margin-bottom:10px;
+    transition:border-color .15s ease, background .15s ease, transform .1s ease;
+  }
+  .opt:hover:not(:disabled){ border-color:var(--accent-soft); transform:translateY(-1px); }
+  .opt.correct{ border-color:var(--accent); background:var(--accent-softer); font-weight:700; }
+  .opt.incorrect{ border-color:var(--bad); background:var(--bad-soft); font-weight:700; }
+  .opt:disabled{ cursor:default; }
+
+  .explain{
+    margin-top:10px;
+    padding:13px 15px;
+    background:#FFFBF0;
+    border:1.5px solid #F0E2B6;
+    border-radius:12px;
+    font-size:13.5px;
+    color:#3A3A3A;
+    display:none;
+    line-height:1.55;
+  }
+  .explain.show{ display:block; }
+
+  .quiz-nav-row{
+    display:flex;
+    justify-content:flex-end;
+    margin-top:18px;
+  }
+  .next-btn{
+    background:var(--accent);
+    color:#fff;
+    border:none;
+    font-family:var(--display);
+    padding:11px 22px;
+    border-radius:12px;
+    font-size:14.5px;
+    font-weight:700;
+    cursor:pointer;
+    opacity:.4;
+    pointer-events:none;
+    transition:opacity .2s ease;
+  }
+  .next-btn.ready{ opacity:1; pointer-events:auto; }
+
+  .quiz-result{
+    text-align:center;
+    padding:24px 4px 6px;
+  }
+  .quiz-result .score{
+    font-family:var(--display);
+    font-size:46px;
+    font-weight:800;
+    color:var(--accent);
+    margin-bottom:6px;
+  }
+  .quiz-result p{ color:var(--ink-soft); font-size:14.5px; margin:0 0 20px; }
+  .quiz-result .breakdown{
+    text-align:left;
+    font-size:13px;
+    color:var(--ink-soft);
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:12px 16px;
+    margin-bottom:20px;
+  }
+  .quiz-result .breakdown div{ display:flex; justify-content:space-between; padding:4px 0; }
+  .quiz-result .breakdown div b{ color:var(--ink); }
+  .restart-btn{
+    background:var(--ink);
+    color:#fff;
+    border:none;
+    font-family:var(--display);
+    padding:11px 24px;
+    border-radius:12px;
+    font-size:14.5px;
+    font-weight:700;
+    cursor:pointer;
+  }
+  .quiz-empty{
+    text-align:center;
+    padding:50px 10px;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- Growth tree (quiz progress) ---------- */
+  .growth-wrap{
+    margin:14px 0 16px;
+    padding:14px 12px 12px;
+    background:var(--accent-softer);
+    border:1px solid var(--accent-soft);
+    border-radius:var(--radius);
+    text-align:center;
+    transition:background .35s ease, border-color .35s ease;
+  }
+  .growth-svg{
+    width:100%;
+    max-width:150px;
+    height:150px;
+  }
+  .growth-label{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:12.5px;
+    color:var(--ink);
+    margin-top:2px;
+  }
+  .growth-sub{
+    font-size:11px;
+    color:var(--ink-soft);
+    margin-top:1px;
+  }
+  .leaf-pop{
+    animation:leafPop .5s cubic-bezier(.34,1.56,.64,1);
+    transform-origin:center;
+  }
+  @keyframes leafPop{
+    0%{ transform:scale(0) rotate(-30deg); opacity:0; }
+    70%{ transform:scale(1.25) rotate(6deg); opacity:1; }
+    100%{ transform:scale(1) rotate(0deg); opacity:1; }
+  }
+  .trunk-grow{
+    transition:d .4s ease;
+  }
+  .bloom-pop{
+    animation:bloomPop .5s cubic-bezier(.34,1.56,.64,1);
+    transform-origin:center;
+  }
+  @keyframes bloomPop{
+    0%{ transform:scale(0); opacity:0; }
+    70%{ transform:scale(1.3); opacity:1; }
+    100%{ transform:scale(1); opacity:1; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-deco">
+  <div class="bg-blob b1"></div>
+  <div class="bg-blob b2"></div>
+  <div class="bg-blob b3"></div>
+  <div class="bg-blob b4"></div>
+  <div class="bg-star" style="top:8%;left:14%;">✦</div>
+  <div class="bg-star" style="top:22%;left:78%;animation-delay:.6s;">★</div>
+  <div class="bg-star" style="top:64%;left:6%;animation-delay:1.2s;">✦</div>
+  <div class="bg-star" style="top:78%;left:88%;animation-delay:1.8s;">★</div>
+  <div class="bg-star" style="top:45%;left:92%;animation-delay:.9s;">✦</div>
+  <div class="bg-star" style="top:88%;left:40%;animation-delay:2.2s;">★</div>
+</div>
+
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-row">
+        <div class="brand-logo" id="brandLogo">B</div>
+        <div class="brand-word">
+          <div class="brand-mark">Bujin<span id="brandAccent">&rsquo;s</span></div>
+          <div class="brand-mark-sub">Grammar Dictionary</div>
+        </div>
+      </div>
+      <div class="brand-seal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        Албан ёсны хувилбар
+      </div>
+      <div class="brand-sub">A1 → C2 · Англи хэлний бүх дүрэм нэг дор</div>
+    </div>
+
+    <div class="mode-switch" id="modeSwitch">
+      <button class="mode-btn active" id="modeDictBtn" data-mode="dict">📖 Толь бичиг</button>
+      <button class="mode-btn" id="modeQuizBtn" data-mode="quiz">📝 Тест</button>
+    </div>
+
+    <div class="growth-wrap hidden" id="growthTreeWrap">
+      <svg class="growth-svg" id="growthTreeSvg" viewBox="0 0 160 170" xmlns="http://www.w3.org/2000/svg"></svg>
+      <div class="growth-label" id="growthLabel">Үр</div>
+      <div class="growth-sub" id="growthSub">Зөв хариулах тусам ургана</div>
+    </div>
+
+    <div class="mascot-wrap">
+      <svg class="mascot-svg" id="sidebarMascot" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="60" cy="100" rx="26" ry="7" fill="#000" opacity=".06"/>
+        <path d="M30 78 Q18 66 26 50 Q16 44 22 32 Q30 24 40 30 Q48 18 62 20 Q78 22 82 36 Q94 38 92 52 Q100 60 90 72 Q92 90 72 96 Q60 102 46 96 Q32 92 30 78Z" fill="var(--accent)"/>
+        <ellipse cx="60" cy="72" rx="26" ry="20" fill="#FFF6E4"/>
+        <path d="M38 30 Q34 18 44 14 Q42 24 46 30Z" fill="var(--accent)"/>
+        <path d="M76 28 Q82 16 92 14 Q88 24 82 28Z" fill="var(--accent)"/>
+        <circle cx="47" cy="58" r="10" fill="#fff"/>
+        <circle cx="75" cy="58" r="10" fill="#fff"/>
+        <circle cx="49" cy="60" r="5" fill="#20242B"/>
+        <circle cx="77" cy="60" r="5" fill="#20242B"/>
+        <circle cx="51" cy="57" r="1.6" fill="#fff"/>
+        <circle cx="79" cy="57" r="1.6" fill="#fff"/>
+        <circle cx="38" cy="70" r="5" fill="#FF9E9E" opacity=".55"/>
+        <circle cx="86" cy="70" r="5" fill="#FF9E9E" opacity=".55"/>
+        <path d="M54 76 Q61 82 68 76" stroke="#20242B" stroke-width="2.3" fill="none" stroke-linecap="round"/>
+        <path d="M94 56 Q108 52 106 40" stroke="var(--accent)" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <rect x="40" y="88" width="26" height="18" rx="3" fill="#fff" stroke="var(--accent)" stroke-width="2.5"/>
+        <line x1="46" y1="94" x2="60" y2="94" stroke="var(--accent)" stroke-width="1.6"/>
+        <line x1="46" y1="99" x2="60" y2="99" stroke="var(--accent)" stroke-width="1.6"/>
+      </svg>
+      <div class="mascot-speech" id="sidebarMascotMsg">Сайн уу! Би Буж — өнөөдөр ямар дүрэм сурах вэ? 📖</div>
+    </div>
+
+    <nav class="staircase" id="staircase"></nav>
+
+    <div class="sidebar-note" id="sidebarNote">
+      Нийт <b id="totalCount">0</b> дүрэм, 6 түвшинд ангилагдсан. Дурын дүрэмийг олохын тулд дээрх хайлтын талбарыг ашиглана уу.
+    </div>
+  </aside>
+
+  <main class="main">
+    <!-- ===== Dictionary view ===== -->
+    <div id="dictView">
+      <div class="search-row">
+        <div class="search-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="searchInput" placeholder="Дүрэм хайх — жишээ нь: passive, нөхцөлт өгүүлбэр, gerund...">
+        </div>
+      </div>
+
+      <div class="level-head" id="levelHead">
+        <div class="eyebrow"><span class="dot"></span><span id="lvEyebrow"></span></div>
+        <h1 id="lvTitle"></h1>
+        <p id="lvDesc"></p>
+      </div>
+
+      <div class="topic-count" id="topicCount"></div>
+      <div id="topicList"></div>
+    </div>
+
+    <!-- ===== Quiz view ===== -->
+    <div id="quizView" class="hidden">
+      <div class="level-head">
+        <div class="eyebrow"><span class="dot"></span><span>Тест</span></div>
+        <h1>Дүрмийн тест</h1>
+        <p>Түвшингээ сонгоод мэдлэгээ шалгаарай. Хэдэн ч түвшин зэрэг сонгож болно.</p>
+      </div>
+
+      <div class="quiz-level-filter" id="quizLevelFilter"></div>
+      <div class="quiz-progress-bar hidden" id="quizProgressBar"><div class="quiz-progress-fill" id="quizProgressFill"></div></div>
+      <div id="quizArea"></div>
+    </div>
+  </main>
+</div>
+
+<footer>© 2026 Bujin's Grammar Dictionary. Сурах зорилгоор эмхэтгэсэн албан ёсны лавлах толь бичиг ба тест. Түвшин бүрийг дараалан үзэж дадлагажуулахыг зөвлөж байна.</footer>
+
+<div class="celebrate-pop" id="celebratePop">
+  <div class="celebrate-bubble" id="celebrateMsg"></div>
+  <svg class="celebrate-mascot" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="60" cy="100" rx="26" ry="7" fill="#000" opacity=".06"/>
+    <path d="M30 78 Q18 66 26 50 Q16 44 22 32 Q30 24 40 30 Q48 18 62 20 Q78 22 82 36 Q94 38 92 52 Q100 60 90 72 Q92 90 72 96 Q60 102 46 96 Q32 92 30 78Z" fill="var(--accent)"/>
+    <ellipse cx="60" cy="72" rx="26" ry="20" fill="#FFF6E4"/>
+    <path d="M38 30 Q34 18 44 14 Q42 24 46 30Z" fill="var(--accent)"/>
+    <path d="M76 28 Q82 16 92 14 Q88 24 82 28Z" fill="var(--accent)"/>
+    <circle cx="47" cy="56" r="10" fill="#fff"/>
+    <circle cx="75" cy="56" r="10" fill="#fff"/>
+    <circle cx="49" cy="55" r="5" fill="#20242B"/>
+    <circle cx="77" cy="55" r="5" fill="#20242B"/>
+    <circle cx="51" cy="52" r="1.6" fill="#fff"/>
+    <circle cx="79" cy="52" r="1.6" fill="#fff"/>
+    <circle cx="38" cy="70" r="5" fill="#FF9E9E" opacity=".55"/>
+    <circle cx="86" cy="70" r="5" fill="#FF9E9E" opacity=".55"/>
+    <path d="M52 74 Q61 86 70 74" stroke="#20242B" stroke-width="2.3" fill="none" stroke-linecap="round"/>
+    <path d="M94 56 Q108 52 106 40" stroke="var(--accent)" stroke-width="6" fill="none" stroke-linecap="round"/>
+  </svg>
+</div>
+
+<script>
+const LEVELS = [
+  { id: "a1", name: "A1", label: "Анхан шат", sub: "Beginner", color: "#3E8A5C", icon: "🌱" },
+  { id: "a2", name: "A2", label: "Анхан дэвшилтэт", sub: "Elementary", color: "#1E8E8E", icon: "🌿" },
+  { id: "b1", name: "B1", label: "Дунд шат", sub: "Intermediate", color: "#2F6FB0", icon: "🌊" },
+  { id: "b2", name: "B2", label: "Дунд дэвшилтэт", sub: "Upper-Intermediate", color: "#5B4B9C", icon: "⛰️" },
+  { id: "c1", name: "C1", label: "Ахисан түвшин", sub: "Advanced", color: "#8E3A62", icon: "⭐" },
+  { id: "c2", name: "C2", label: "Мастер түвшин", sub: "Proficiency", color: "#9A3324", icon: "👑" },
+];
+</script>
+<script>
+const TOPICS = {
+  a1: [
+    { en: "Verb \u2018To Be\u2019", mn: "Am / Is / Are", formation: "I am  |  You/We/They are  |  He/She/It is  (+ not / ?)",
+      usage: ["Хүн, зүйлийн нэр, шинж чанар, мэдрэмж, насыг илэрхийлэхэд ашиглана.",
+        "Үгүйсгэхдээ 'not' нэмнэ; асуултад be-үйл үгийг эхэнд гаргана."],
+      examples: [["I am a student.", "Би оюутан."], ["She is not tired.", "Тэр ядраагүй байна."], ["Are you hungry?", "Чи өлссөн үү?"]] },
+    { en: "Present Simple", mn: "Одоо цагийн энгийн хэлбэр", formation: "Subject + V1 (+s/es 3rd person)  |  don't/doesn't + V1  |  Do/Does + subject + V1?",
+      usage: ["Дадал зуршил, өдөр тутмын үйлдэл, бодит мэдээллийг илэрхийлнэ.",
+        "He/She/It-д үйл үгэнд -s/-es нэмнэ.", "Хуваарь, цагийн хөдөлгөөнийг мөн илэрхийлж болно."],
+      examples: [["I go to school every day.", "Би өдөр бүр сургууль явдаг."], ["She doesn't like coffee.", "Тэр кофе таалагддаггүй."], ["Does he play football?", "Тэр хөлбөмбөг тоглодог уу?"]] },
+    { en: "Articles A / An / The", mn: "Тодорхойлогч үг", formation: "a + гийгүүлэгч авиа  |  an + эгшиг авиа  |  the + тодорхой нэр үг",
+      usage: ["a/an — нэг ижил төрлийн зүйлийн аль нэгийг, анх удаа дурдахад.",
+        "the — өмнө нь дурдсан, эсвэл аль болохыг тодорхой мэдэж байгаа зүйлд."],
+      examples: [["I saw a dog. The dog was black.", "Би нохой харсан. Тэр нохой хар өнгөтэй байсан."], ["She is an engineer.", "Тэр инженер."]] },
+    { en: "Plural Nouns", mn: "Олон тооны нэр үг", formation: "noun + s  |  -s/-x/-ch/-sh дараа -es  |  consonant+y → ies  |  тогтворгүй хэлбэрүүд (child→children)",
+      usage: ["Нэгээс олон зүйл, хүнийг илэрхийлэхэд ашиглана.",
+        "Тогтворгүй олон тооны хэлбэрүүдийг тусад нь цээжлэх шаардлагатай."],
+      examples: [["two books, three boxes", "хоёр ном, гурван хайрцаг"], ["five children, two men", "таван хүүхэд, хоёр эрэгтэй"]] },
+    { en: "Personal & Possessive Pronouns", mn: "Бие ба эзэмшлийн төлөөний үг", formation: "I/you/he/she/it/we/they  |  my/your/his/her/its/our/their",
+      usage: ["Бие төлөөний үг нэр үгийг орлоно; эзэмшлийн тэмдэг нэр нь хамаарлыг илэрхийлнэ."],
+      examples: [["She loves her cat.", "Тэр муурандаа хайртай."], ["They live in their house.", "Тэд гэртээ амьдардаг."]] },
+    { en: "There is / There are", mn: "Байршил, оршихуй", formation: "There is + ганц тоо/тоологдохгүй нэр  |  There are + олон тоо",
+      usage: ["Ямар нэг зүйл, хүн тодорхой газар байгааг мэдэгдэхэд ашиглана."],
+      examples: [["There is a book on the table.", "Ширээн дээр ном байна."], ["There are three cats in the garden.", "Цэцэрлэгт гурван муур байна."]] },
+    { en: "Present Continuous", mn: "Одоо үргэлжлэх цаг", formation: "am/is/are + V-ing",
+      usage: ["Яг одоо болж буй үйлдэл, түр зуурын нөхцөл байдлыг илэрхийлнэ.",
+        "Ойрын ирээдүйн урьдчилан төлөвлөсөн ажлыг мөн илэрхийлж болно."],
+      examples: [["I am reading a book.", "Би ном уншиж байна."], ["They are not watching TV.", "Тэд зурагт үзэхгүй байна."], ["What are you doing?", "Чи юу хийж байна вэ?"]] },
+    { en: "Can / Can't", mn: "Чадвар ба зөвшөөрөл", formation: "can/can't + V1",
+      usage: ["Чадвар, зөвшөөрөл, хүсэлт гаргахад ашиглана."],
+      examples: [["I can swim.", "Би сэлж чаддаг."], ["Can I open the window?", "Би цонх онгойлгож болох уу?"], ["She can't drive.", "Тэр машин жолоодож чаддаггүй."]] },
+    { en: "Prepositions of Place & Time", mn: "In / On / At", formation: "in (сар, жил, хот)  |  on (өдөр, огноо)  |  at (цаг, тодорхой цэг)",
+      usage: ["Цаг хугацаа, орон зайн байршлыг тодорхойлно."],
+      examples: [["at 5 o'clock", "5 цагт"], ["on Monday", "Даваа гарагт"], ["in June, at the bus stop", "6-р сард, автобусны буудал дээр"]] },
+    { en: "Question Words", mn: "What / Where / When / Who / Why / How", formation: "Wh-үг + туслах үйл үг + эзэн + үйл үг",
+      usage: ["Мэдээлэл асуухад ашиглана."],
+      examples: [["Where do you live?", "Чи хаана амьдардаг вэ?"], ["What is your name?", "Таны нэр хэн бэ?"], ["How old are you?", "Чи хэдэн настай вэ?"]] },
+  ],
+  a2: [
+    { en: "Past Simple", mn: "Өнгөрсөн энгийн цаг", formation: "V2 (+ed)  |  did not + V1  |  Did + subject + V1?",
+      usage: ["Тодорхой цаг хугацаанд дууссан үйлдлийг илэрхийлнэ.", "Тогтворгүй үйл үгсийн 2-р хэлбэрийг цээжлэх шаардлагатай."],
+      examples: [["I visited Paris last year.", "Би өнгөрсөн жил Парист очиж үзсэн."], ["She didn't call me.", "Тэр надад залгаагүй."], ["Did you see that movie?", "Чи тэр киног үзсэн үү?"]] },
+    { en: "Past Continuous", mn: "Өнгөрсөн үргэлжлэх цаг", formation: "was/were + V-ing",
+      usage: ["Өнгөрсөн тодорхой мөчид үргэлжилж байсан үйлдэл.", "Нэг үйлдлийг өөр богино үйлдэл тасалдуулсныг илэрхийлнэ."],
+      examples: [["I was cooking when he arrived.", "Тэр ирэхэд би хоол хийж байсан."], ["They were sleeping at midnight.", "Тэд шөнө дунд унтаж байсан."]] },
+    { en: "Comparative & Superlative Adjectives", mn: "Харьцуулах ба хамгийн зэрэг", formation: "богино: adj+er/est  |  урт: more/most + adj  |  тогтворгүй: good-better-best",
+      usage: ["Хоёр буюу түүнээс дээш зүйлийг харьцуулахад ашиглана."],
+      examples: [["This book is more interesting than that one.", "Энэ ном тэрнээс сонирхолтой."], ["She is the tallest in her class.", "Тэр ангидаа хамгийн өндөр."]] },
+    { en: "Future: Going to & Will", mn: "Ирээдүй цаг", formation: "am/is/are + going to + V1  |  will + V1",
+      usage: ["Going to — төлөвлөсөн зорилго, шинж тэмдэг дээр үндэслэсэн таамаглал.", "Will — тухайн мөчид гарсан шийдвэр, ерөнхий таамаглал."],
+      examples: [["I'm going to study medicine.", "Би анагаах ухаан сурах гэж байна."], ["I think it will rain tomorrow.", "Маргааш бороо орно гэж бодож байна."], ["I'll help you!", "Би чамд туслая!"]] },
+    { en: "Present Perfect (Basic)", mn: "Одоо төгссөн цаг", formation: "have/has + V3",
+      usage: ["Амьдралын туршлага, дуусаагүй цаг хугацаа, саяхны үр дүнг илэрхийлнэ.", "ever/never/just/already/yet зэрэг дагалдах үгтэй ойр хэрэглэгддэг."],
+      examples: [["I have visited Japan twice.", "Би Японд хоёр удаа очиж үзсэн."], ["She has just finished her homework.", "Тэр гэрийн даалгавраа саяхан дуусгасан."], ["Have you ever tried sushi?", "Чи хэзээ нэгэн цагт суши идэж үзсэн үү?"]] },
+    { en: "Countable/Uncountable & Some/Any", mn: "Тоологдох ба тоологдоxгүй нэр үг", formation: "тоологдох: many/a few  |  тоологдоxгүй: much/a little  |  some (эерэг), any (сөрөг/асуулт)",
+      usage: ["Нэр үгийн тоо хэмжээг зөв илэрхийлэхэд ашиглана."],
+      examples: [["There isn't any milk.", "Сүү байхгүй байна."], ["I have some money.", "Надад бага зэрэг мөнгө байгаа."], ["How much water do you drink?", "Чи хэр их ус уудаг вэ?"]] },
+    { en: "Modal Verbs of Obligation", mn: "Must / Have to / Should", formation: "must/have to/should + V1",
+      usage: ["must — хувийн хатуу үүрэг; have to — гаднын дүрэм журам; should — зөвлөгөө."],
+      examples: [["You must wear a seatbelt.", "Чи аюулгүйн бүс зүүх ёстой."], ["I have to work tomorrow.", "Би маргааш ажиллах ёстой (журмаар)."], ["You should see a doctor.", "Чи эмчид үзүүлэх хэрэгтэй (зөвлөгөө)."]] },
+    { en: "Adverbs of Frequency", mn: "Давтамжийн дайвар үг", formation: "always/usually/often/sometimes/rarely/never — үндсэн үйл үгийн өмнө, be-ийн дараа",
+      usage: ["Ямар нэг зүйл хэр олон удаа болдгийг илэрхийлнэ."],
+      examples: [["I always brush my teeth.", "Би үргэлж шүдээ угаадаг."], ["She is never late.", "Тэр хэзээ ч хоцордоггүй."]] },
+    { en: "Object & Possessive Pronouns", mn: "Тусагдахуун ба эзэмшлийн төлөөний үг", formation: "me/you/him/her/it/us/them  |  mine/yours/his/hers/ours/theirs",
+      usage: ["Тусагдахуун төлөөний үг нэр үгийг орлоно; эзэмшлийн төлөөний үг нэргүйгээр өмчлөлийг илэрхийлнэ."],
+      examples: [["Give it to me.", "Үүнийг надад өг."], ["This book is mine, not yours.", "Энэ ном минийх, чинийх биш."]] },
+    { en: "Conjunctions", mn: "And / But / Because / So / Although", formation: "өгүүлбэр + холбох үг + өгүүлбэр",
+      usage: ["Санааг нэмэх, эсрэгцүүлэх, шалтгаан, үр дагаврыг холбоход ашиглана."],
+      examples: [["I was tired, so I went to bed.", "Би ядарсан тул унтахаар оров."], ["Although it was raining, we went out.", "Бороо орж байсан ч бид гадагш гарсан."]] },
+  ],
+  b1: [
+    { en: "Present Perfect vs Past Simple", mn: "Хоёр цагийн ялгаа", formation: "have/has + V3  (тодорхойгүй цаг)  vs.  V2  (тодорхой цаг)",
+      usage: ["Present Perfect — цаг хугацаа тодорхойгүй, өнөөгийн холбоо чухал.", "Past Simple — тодорхой цаг хугацаанд, одоотой холбоогүй дууссан."],
+      examples: [["I have lost my keys. (I don't have them now)", "Би түлхүүрээ гээсэн (одоо алга)."], ["I lost my keys yesterday, but I found them.", "Би түлхүүрээ өчигдөр гээгээд, дараа нь олсон."]] },
+    { en: "Present Perfect Continuous", mn: "Одоо төгсч үргэлжлэх цаг", formation: "have/has been + V-ing",
+      usage: ["Өнгөрсөнөөс эхэлж одоог хүртэл үргэлжилж буй, эсвэл саяхан дууссан боловч үр дүн нь харагдаж буй үйлдэл.", "Хугацааны үргэлжлэлийг онцлоно (for/since-тэй ойр)."],
+      examples: [["I have been studying for three hours.", "Би гурван цагийн турш хичээллэж байна."], ["She's tired because she has been running.", "Тэр гүйсэн учраас ядарсан байна."]] },
+    { en: "First Conditional", mn: "Нэгдүгээр нөхцөлт өгүүлбэр", formation: "If + Present Simple, will + V1",
+      usage: ["Бодитой, боломжтой ирээдүйн нөхцөл ба түүний үр дагаврыг илэрхийлнэ."],
+      examples: [["If it rains, I will stay home.", "Хэрэв бороо орвол, би гэртээ байна."], ["If you study hard, you'll pass.", "Хэрэв чи хичээж сурвал, шалгалтаа өгнө."]] },
+    { en: "Second Conditional", mn: "Хоёрдугаар нөхцөлт өгүүлбэр", formation: "If + Past Simple, would + V1",
+      usage: ["Одоогийн бодит бус, эсвэл боломж багатай нөхцөлийг илэрхийлнэ."],
+      examples: [["If I had more money, I would travel more.", "Хэрэв надад илүү мөнгө байсан бол, би илүү аялах байсан."], ["If I were you, I would apologize.", "Хэрэв би чиний оронд байсан бол уучлалт гуйх байсан."]] },
+    { en: "Passive Voice (Present & Past Simple)", mn: "Идэвхгүй хэлбэр", formation: "am/is/are + V3  |  was/were + V3",
+      usage: ["Үйлдлийг гүйцэтгэгчээс илүү үйлдэлд өртсөн зүйлийг онцлоход ашиглана.", "Гүйцэтгэгч тодорхойгүй эсвэл чухал биш үед хэрэглэгддэг."],
+      examples: [["The letter was sent yesterday.", "Захидлыг өчигдөр илгээсэн байна."], ["This bridge was built in 1990.", "Энэ гүүрийг 1990 онд барьсан."]] },
+    { en: "Reported Speech (Statements)", mn: "Шилжүүлсэн яриа", formation: "said (that) + subject + V (нэг цаг ухарна)",
+      usage: ["Өөр хүний хэлсэн үгийг шууд бусаар дамжуулахад ашиглана; цаг нэг шат ухардаг (backshift)."],
+      examples: [["\"I am tired,\" she said. → She said (that) she was tired.", "\"Би ядарсан\" гэж тэр хэлсэн. → Тэр ядарсан гэж хэлсэн."], ["He said he would call me.", "Тэр надад залгана гэж хэлсэн."]] },
+    { en: "Relative Clauses (Defining)", mn: "Тодорхойлох харьцангуй өгүүлбэр", formation: "who/which/that/where + clause (таслалгүй)",
+      usage: ["Аль хүн, зүйл, газрын тухай ярьж буйгаа тодорхойлж, мэдээллийг зайлшгүй нэмнэ."],
+      examples: [["The man who lives next door is a doctor.", "Хажуугийн айлд амьдардаг эрэгтэй эмч юм."], ["This is the book that I told you about.", "Энэ бол би чамд хэлсэн ном."]] },
+    { en: "Modal Verbs of Deduction", mn: "Таамаглалын модаль", formation: "must/might/may/can't + V1 (одоо цагт)",
+      usage: ["must — маш итгэлтэй эерэг таамаглал; can't — маш итгэлтэй сөрөг таамаглал; might/may — эргэлзээтэй таамаглал."],
+      examples: [["He must be at work now.", "Тэр одоо ажил дээрээ байгаа байх (итгэлтэй)."], ["She can't be at home; her car isn't here.", "Тэр гэртээ байх боломжгүй; машин нь энд байхгүй байна."], ["It might rain later.", "Хожим бороо орж болзошгүй."]] },
+    { en: "Used to / Would (Past Habits)", mn: "Өнгөрсний зуршил", formation: "used to + V1  |  would + V1 (зөвхөн үйлдэлд)",
+      usage: ["Өнгөрсөнд байсан, одоо байхгүй болсон зуршил, байдлыг илэрхийлнэ.", "'Would' нь зөвхөн давтагдсан үйлдэлд хэрэглэгдэнэ, байдал/төлөвт биш (used to ашиглана)."],
+      examples: [["I used to play the piano.", "Би урьд нь төгөлдөр хуур тоглодог байсан."], ["We would often go fishing in summer.", "Бид зун ихэвчлэн загас барихаар явдаг байсан."], ["She used to be shy. (NOT 'would be shy')", "Тэр урьд нь ичимхий байсан."]] },
+    { en: "Gerunds and Infinitives", mn: "V-ing ба to-infinitive", formation: "verb + V-ing  |  verb + to + V1 (үйл үгээс хамаарна)",
+      usage: ["Зарим үйл үгийн дараа V-ing, зарим нь to-infinitive ирнэ — цээжлэх шаардлагатай хослолууд.", "Заримдаа хоёулаа орж болох ч утга өөрчлөгддөг (stop doing / stop to do)."],
+      examples: [["I enjoy reading books.", "Би ном унших дуртай."], ["She decided to leave early.", "Тэр эрт явахаар шийдсэн."], ["He stopped smoking. / He stopped to smoke.", "Тэр тамхи хаясан. / Тэр тамхи татахаар зогссон."]] },
+  ],
+  b2: [
+    { en: "Past Perfect Simple & Continuous", mn: "Өнгөрсний өнгөрсөн цаг", formation: "had + V3  |  had been + V-ing",
+      usage: ["Өнгөрсний өөр нэг цэгээс өмнө дууссан үйлдлийг илэрхийлнэ (\u2018өнгөрсний өнгөрсөн\u2019).", "Continuous хэлбэр нь тухайн цэг хүртэл үргэлжилсэн явцыг онцолно."],
+      examples: [["When I arrived, the meeting had already started.", "Би ирэхэд хурал аль хэдийн эхэлчихсэн байсан."], ["She was tired because she had been working all day.", "Тэр өдөржин ажилласан тул ядарсан байв."]] },
+    { en: "Reported Speech \u2014 Questions & Commands", mn: "Асуулт ба тушаал шилжүүлэх", formation: "asked + if/whether + subject + V  |  asked + Wh-word + subject + V  |  told + object + (not) to + V1",
+      usage: ["Асуултыг шилжүүлэхдээ асуултын дараалал биш, энгийн өгүүлбэрийн дараалал хэрэглэнэ.", "Тушаал, хүсэлтийг 'tell/ask + object + (not) to V1' хэлбэрээр дамжуулна."],
+      examples: [["\"Are you coming?\" → He asked if I was coming.", "\"Чи ирж байна уу?\" → Тэр намайг ирж байгаа эсэхийг асуусан."], ["\"Close the door,\" she said. → She told me to close the door.", "\"Хаалгыг хаа\" гэж тэр хэлсэн. → Тэр надад хаалга хаахыг хэлсэн."]] },
+    { en: "Relative Clauses (Non-defining)", mn: "Тодорхойгүй харьцангуй өгүүлбэр", formation: ", who/which/where ... , (таслалтай, заавал биш нэмэлт мэдээлэл)",
+      usage: ["Аль хэдийн тодорхой болсон хүн, зүйлийн талаар нэмэлт мэдээлэл өгнө; арилгавал ерөнхий утга алдагдахгүй.", "'that' энэ бүтэцэд хэрэглэгддэггүй."],
+      examples: [["My brother, who lives in London, is visiting us.", "Лондонд амьдардаг ах маань бидэнд зочилж байна (ах ганц)."], ["Paris, which is the capital of France, is beautiful.", "Францын нийслэл Парис үзэсгэлэнтэй."]] },
+    { en: "Passive Voice \u2014 All Tenses Overview", mn: "Идэвхгүй хэлбэрийн бүх цаг", formation: "be (тухайн цагт) + V3  |  модаль: modal + be + V3",
+      usage: ["Present/Past Perfect, Continuous, модаль үйл үгстэй идэвхгүй хэлбэрийг зөв бүтээх чадвар.", "Эрдэм шинжилгээ, мэдээллийн бичвэрт гүйцэтгэгчийг нуун далдлахад элбэг ашиглагддаг."],
+      examples: [["The report has been reviewed by the manager.", "Тайланг менежер хянасан байна."], ["The problem should be solved quickly.", "Асуудлыг хурдан шийдвэрлэх ёстой."]] },
+    { en: "Future Perfect & Future Continuous", mn: "Ирээдүйн төгссөн ба үргэлжлэх цаг", formation: "will have + V3  |  will be + V-ing",
+      usage: ["Future Perfect — ирээдүйн тодорхой цэг гэхэд дуусах үйлдэл.", "Future Continuous — ирээдүйн тодорхой цэгт үргэлжилж байх үйлдэл."],
+      examples: [["By next year, I will have graduated.", "Ирэх жил гэхэд би төгссөн байх болно."], ["This time tomorrow, I will be flying to Seoul.", "Маргааш яг энэ цагт би Сөүл рүү нисч байх болно."]] },
+    { en: "Be used to / Get used to", mn: "Дасах, дассан байдал", formation: "be used to + V-ing/noun (дассан байдал)  |  get used to + V-ing/noun (дасах явц)",
+      usage: ["'Used to + V1' (өмнөх зуршил)-аас ялгаатай: эдгээр нь ямар нэг зүйлд дассан эсвэл дасаж буй байдлыг илэрхийлнэ.", "'to' энд угтвар үг тул дараа нь V-ing ирнэ, V1 биш."],
+      examples: [["I am used to waking up early.", "Би эрт босоход дассан."], ["She is getting used to the new job.", "Тэр шинэ ажилдаа дасаж байна."]] },
+    { en: "Mustn't vs Don't have to vs Needn't", mn: "Хориг ба шаардлагагүй байдлын ялгаа", formation: "mustn't + V1 (хориг)  |  don't have to / needn't + V1 (шаардлагагүй)",
+      usage: ["mustn't — хийхийг хатуу хориглоно.", "don't have to / needn't — хийх шаардлагагүй ч, хийж болно — mustn't-той бүрэн эсрэг утгатай тул андуурч болохгүй."],
+      examples: [["You mustn't smoke here. (forbidden)", "Чи энд тамхи татаж болохгүй (хориглосон)."], ["You don't have to come if you're busy. (not necessary)", "Хэрэв завгүй бол ирэх шаардлагагүй."]] },
+    { en: "Concession Clauses", mn: "Although / Though / Even though / Despite / In spite of", formation: "Although/Even though + clause  |  Despite/In spite of + noun/V-ing",
+      usage: ["Хүлээгдэж буй үр дагаврыг эсэргүүцсэн, зөрчилтэй мэдээллийг холбоход ашиглана.", "Despite/In spite of-ын дараа өгүүлбэр (clause) биш, нэр үг эсвэл V-ing ирнэ."],
+      examples: [["Although it was expensive, she bought it.", "Үнэтэй байсан ч тэр авсан."], ["Despite the rain, we went hiking.", "Бороотой байсан ч бид явган аялалд гарсан."]] },
+    { en: "Indirect (Embedded) Questions", mn: "Шууд бус асуулт", formation: "Could you tell me... / I wonder... / Do you know... + (Wh-word) + subject + verb (энгийн дараалал)",
+      usage: ["Илүү эелдэг, албан ёсны байдлаар асуухад ашиглана; дотоод асуулт нь энгийн өгүүлбэрийн дараалалтай байна."],
+      examples: [["Could you tell me where the station is?", "Өртөө хаана байдгийг хэлж өгөх үү?"], ["I wonder what time it is.", "Одоо хэдэн цаг болсныг мэдэхгүй байна."]] },
+    { en: "Quantifiers", mn: "A few / Few / A little / Little / Several", formation: "тоологдох: a few (бага ч хангалттай) / few (бараг байхгүй)  |  тоологдоxгүй: a little / little",
+      usage: ["Эерэг, сөрөг өнгө аясаар тоо хэмжээг ялгаж илэрхийлнэ — 'a' байгаа нь 'хангалттай' гэсэн эерэг өнгөтэй, 'a'-гүй нь 'дутмаг' гэсэн сөрөг өнгөтэй."],
+      examples: [["I have a few friends here. (enough, positive)", "Надад энд хэдэн найз бий (хангалттай)."], ["I have few friends here. (almost none, negative)", "Надад энд бараг найз алга (дутмаг)."]] },
+  ],
+  c1: [
+    { en: "Third Conditional & Mixed Conditionals", mn: "Гуравдугаар ба хольцолсон нөхцөлт өгүүлбэр", formation: "3rd: If + Past Perfect, would have + V3  |  Mixed: If + Past Perfect, would + V1 (эсвэл эсрэгээр)",
+      usage: ["3rd Conditional — өнгөрсөнд болоогүй, өөрчлөх боломжгүй нөхцөл ба түүний өнгөрсөн үр дагавар.", "Mixed Conditional 1 — өнгөрсөн нөхцөл, ОДООгийн үр дагавар.", "Mixed Conditional 2 — ерийн нөхцөл, ӨНГӨРСӨН үр дагавар."],
+      examples: [["If I had studied harder, I would have passed the exam.", "Хэрэв би илүү хичээж сурсан бол шалгалтаа өгсөн байх байсан."], ["If I had taken that job, I would be rich now.", "Хэрэв тэр ажлыг авсан бол би одоо баян байх байсан."], ["If she weren't so shy, she would have spoken up at the meeting.", "Хэрэв тэр ичимхий биш байсан бол хурал дээр үг хэлэх байсан."]] },
+    { en: "Wish / If only", mn: "Хүсэл ба харамсал", formation: "wish + Past Simple (одоо)  |  wish + Past Perfect (өнгөрсөн)  |  wish + would (бусдын зан хандлагад гомдол)",
+      usage: ["Одоогийн бодит бус байдалд харамсах: wish + Past Simple.", "Өнгөрсөнд харамсах: wish + Past Perfect.", "Өөр хүний зан авирт бухимдал: wish + would + V1."],
+      examples: [["I wish I spoke French.", "Би франц хэлээр ярьдаг байсан бол гэж хүсдэг."], ["I wish I had studied medicine.", "Би анагаах ухаан сурсан бол гэж харамсдаг."], ["I wish you would stop interrupting me.", "Чи намайг таслан ярихаа больчих гэж хүсдэг."]] },
+    { en: "Inversion for Emphasis", mn: "Онцлохын тулд эргүүлсэн дараалал", formation: "Not only... did/have/was + subject  |  Never/Rarely/Seldom + auxiliary + subject  |  No sooner... than",
+      usage: ["Албан ёсны, уран сайхны хэлбэрт сөрөг/хязгаарлагч дайвар үгийг эхэнд авчирснаар туслах үйл үг+эзэн дараалал эргэнэ.", "Илэрхийлэлд онцгой хүчтэй, драмтик өнгө нэмнэ."],
+      examples: [["Never have I seen such a beautiful sunset.", "Ийм үзэсгэлэнтэй нар жаргалтыг би хэзээ ч харж байгаагүй."], ["Not only did she win the race, but she also broke the record.", "Тэр гүйлтэнд ялаад зогсохгүй, дээрээс нь дээд амжилт тогтоосон."], ["No sooner had I arrived than it started raining.", "Би ирэнгүүт л бороо орж эхэлсэн."]] },
+    { en: "Cleft Sentences", mn: "Хагалж онцолсон өгүүлбэр", formation: "It is/was ... that ...  |  What ... is/was ...",
+      usage: ["Өгүүлбэрийн тодорхой нэг хэсэгт анхаарал төвлөрүүлж, онцлохын тулд ашиглана.", "'It'-cleft — тухайн нэг мэдээллийг онцолно.", "'What'-cleft — үйл ажиллагаа, санааг онцолж, төгсгөлд байрлуулна."],
+      examples: [["It was Sarah who called me last night, not Tom.", "Намайг өчигдөр шөнө утасдсан хүн бол Сара байсан, Том биш."], ["What I need is a good night's sleep.", "Надад хэрэгтэй зүйл бол сайхан унтах явдал юм."], ["What surprised me was his honesty.", "Намайг гайхшруулсан зүйл бол түүний үнэнч шударга байдал байсан."]] },
+    { en: "Causative Form", mn: "Have / Get something done", formation: "have/get + object + V3",
+      usage: ["Өөрөө хийлгүй өөр хүнээр ХИЙЛГЭХ санааг илэрхийлнэ.", "'have something done' — албан ёсны, 'get something done' — ярианы хэллэг.", "Санаандгүй тохиолдсон сөрөг санааг ч илэрхийлж болно."],
+      examples: [["I had my hair cut yesterday.", "Би өчигдөр үсээ хийлгэсэн."], ["We're getting our house painted next week.", "Бид дараа долоо хоногт байшингаа будуулна."], ["He had his wallet stolen on the bus.", "Түүний түрийвч автобус дээр хулгайд алдагдсан."]] },
+    { en: "Advanced Reported Speech", mn: "Ахисан түвшний шилжүүлсэн яриа", formation: "reporting verb (suggest, deny, admit, insist, recommend, warn...) + янз бүрийн бүтэц",
+      usage: ["Тайлбарлах үйл үгийн сангаа өргөжүүлбэл ярианы илэрхийллийг илүү нарийвчлалтай дамжуулна.", "suggest/recommend + that + subject + V1;  deny/admit + V-ing;  warn + object + not to V1."],
+      examples: [["She suggested that we leave early.", "Тэр бидэнд эрт явахыг санал болгосон."], ["He denied stealing the money.", "Тэр мөнгө хулгайлсанаа үгүйсгэсэн."], ["The guide warned us not to swim there.", "Хөтөч бидэнд тэнд усанд орохгүй байхыг анхааруулсан."]] },
+    { en: "Participle Clauses", mn: "Оролцуулах өгүүлбэр", formation: "V-ing (идэвхтэй) / V3 (идэвхгүй) -ээр эхлэх өгүүлбэрийн хэсэг",
+      usage: ["Хоёр өгүүлбэрийг нэгтгэж, шалтгаан, цаг хугацаа, дараалсан үйлдлийг товч илэрхийлнэ.", "Ижил эзэнтэй хоёр өгүүлбэрийг нягтруулахад ашигладаг, бичгийн хэлэнд элегант."],
+      examples: [["Feeling tired, she went to bed early.", "Ядарсандаа тэр эрт унтахаар оров."], ["Written in 1997, the novel became an instant classic.", "1997 онд бичигдсэн энэ роман шууд сонгодог болсон."], ["Having finished his homework, he watched TV.", "Гэрийн даалгавраа дуусгасны дараа тэр зурагт үзсэн."]] },
+    { en: "Past Modals", mn: "Should/Could/Might/Needn't have V3", formation: "modal + have + V3",
+      usage: ["should have V3 — өнгөрсөнд хийх ёстой байсан ч хийгээгүй зүйлд шүүмжлэл.", "could have V3 — өнгөрсөнд боломжтой байсан ч хийгээгүй зүйл.", "might have V3 — эргэлзээтэй таамаглал.", "needn't have V3 — хийсэн ч, хийх шаардлагагүй байсан зүйл."],
+      examples: [["You should have told me earlier.", "Чи надад илүү эрт хэлэх ёстой байсан."], ["I could have helped you if you had asked.", "Хэрэв чи асуусан бол би туслах байсан."], ["She might have missed the bus.", "Тэр автобуснаасаа хоцорсон байж магадгүй."], ["You needn't have brought a gift.", "Чи бэлэг авчрах шаардлагагүй байсан."]] },
+    { en: "Emphatic Do", mn: "Онцлохын тулд Do/Did хэрэглэх", formation: "do/does/did + V1 (тэмдэглэгдсэн онцгойлол)",
+      usage: ["Энгийн эерэг өгүүлбэрт do/does/did-г нэмж хийж буй үйлдлийг онцлон баталгаажуулна.", "Маргаан, эсэргүүцлийг няцаах, өөрийгөө батлах үед хэрэглэгддэг."],
+      examples: [["I did lock the door! I remember it clearly.", "Би үнэхээр хаалгаа түгжсэн шүү!"], ["She does care about you, even if she doesn't show it.", "Тэр үнэхээр чамайг хайрладаг, илэрхийлдэггүй ч гэсэн."]] },
+    { en: "Subjunctive Mood", mn: "Захирамжийн утгатай that-өгүүлбэр", formation: "It is essential/important/vital... that + subject + V1 (өөрчлөгддөггүй)  |  suggest/recommend/insist/demand + that + V1",
+      usage: ["Албан ёсны хэлэнд заавал байх ёстой зүйлийг илэрхийлэхэд that-ийн дараах үйл үг ХУВИРДАГГҮЙ.", "Илүү энгийн хэлэнд 'should' ашиглаж болно."],
+      examples: [["It is essential that every student submit the form.", "Оюутан бүр маягтаа өгөх нь чухал."], ["The doctor recommended that he rest for a week.", "Эмч түүнд нэг долоо хоног амрахыг зөвлөсөн."], ["The committee insists that the report be reviewed.", "Хороо тайланг хянан үзэхийг шаардаж байна."]] },
+    { en: "Advanced Relative Clauses", mn: "Preposition + which/whom, whose", formation: "preposition + which/whom;  whose + noun;  all of/most of/some of + which/whom",
+      usage: ["Албан ёсны бичвэрт 'who' оронд 'whom' хэрэглэнэ.", "'whose' эзэмшлийг илэрхийлнэ.", "'quantifier + of + which/whom' нь бүлгийн зарим хэсгийг тодруулна."],
+      examples: [["The professor to whom I sent the email hasn't replied.", "Би имэйл илгээсэн профессор хараахан хариулаагүй байна."], ["This is the company whose products are famous worldwide.", "Энэ бол бүтээгдэхүүн нь дэлхий даяар алдартай компани."], ["There were fifty applicants, most of whom were rejected.", "50 өргөдөл гаргагчийн ихэнх нь татгалзагдсан."]] },
+    { en: "Nominalization", mn: "Нэр үгжүүлэлт", formation: "verb/adjective → noun (decide→decision, aware→awareness, arrive→arrival)",
+      usage: ["Академик, албан ёсны бичвэрт үйл үг/тэмдэг нэрийн оронд нэр үг хэлбэрийг ашигласнаар өгүүлбэр нягт, объектив болно."],
+      examples: [["They decided to increase the budget. → Their decision to increase the budget was announced.", "Тэд төсвийг нэмэгдүүлэхээр шийдсэн → Тэдний шийдвэрийг зарласан."], ["The government analyzed the data. → The government's analysis revealed...", "Засгийн газар өгөгдлийг шинжилсэн → Шинжилгээ нь ...-г илрүүлсэн."]] },
+  ],
+  c2: [
+    { en: "Advanced Inversion", mn: "If-гүй нөхцөлт эргүүлэлт", formation: "Were + subject + (to) V1, ...  |  Had + subject + V3, ...  |  Should + subject + V1, ...  |  So/Such + be + subject + that...",
+      usage: ["'If'-ийг бүрмөсөн хассан нөхцөлт өгүүлбэрийг маш албан ёсны, хууль эрх зүй, эрдэм шинжилгээний бичвэрт ашиглана.", "'So/Such... that' бүтцэд ч мөн адил эргүүлэлт хийж болно."],
+      examples: [["Were the negotiations to fail, the entire agreement would collapse.", "Хэрэв хэлэлцээр бүтэлгүйтвэл, гэрээ бүхэлдээ задрах болно."], ["Had the committee been informed earlier, the crisis might have been averted.", "Хэрэв хороо эрт мэдэгдсэн бол хямралаас зайлсхийж болох байсан."], ["So sudden was the announcement that no one had time to react.", "Мэдэгдэл нь тийм ч гэнэтийн байсан тул хэн ч хариу үйлдэл үзүүлэх цаг байгаагүй."]] },
+    { en: "Fronting", mn: "Cohesion-ы төлөө гишүүнийг урагшлуулах", formation: "Object/Complement/Adverbial + subject + verb (энгийн дараалал хадгалагдана)",
+      usage: ["Өмнөх өгүүлбэртэй холбоо үүсгэх, эсвэл шинэ мэдээллийг онцлохын тулд өгүүлбэрийн эхний байрлалыг өөрчилнө.", "Урт, нарийн бүтэцтэй эрдэм шинжилгээ, публицистик бичвэрт элбэг."],
+      examples: [["Equally important is the question of funding.", "Санхүүжилтийн асуудал ч мөн адил чухал юм."], ["This argument, many scholars would reject.", "Энэ маргааныг олон эрдэмтэд няцаах болно."], ["Only later did she realize the significance of his words.", "Зөвхөн хожим нь тэр түүний үгсийн ач холбогдлыг ойлгосон."]] },
+    { en: "Advanced Ellipsis & Substitution", mn: "Давхардлаас зайлсхийх нарийн аргууд", formation: "auxiliary/modal + so/not/likewise  |  subject + auxiliary (үлдсэн хэсэг арилгагдана)",
+      usage: ["Өмнөх өгүүлбэрт дурдсан үйл үг эсвэл гишүүнийг давтахгүйгээр товчлон илэрхийлнэ.", "Харьцуулсан өгүүлбэрт их хэмжээний эллипс хийгддэг нь C2-ийн онцлог шинж."],
+      examples: [["He claimed to have finished the project, but he hadn't.", "Тэр төслийг дуусгасан гэж мэдэгдсэн ч, дуусгаагүй байв."], ["She's far more experienced than he.", "Тэр эрэгтэйгээс хавьгүй туршлагатай."], ["\"I think it will rain.\" \"So do I.\"", "\"Бороо орно гэж бодож байна.\" \"Би ч тэгж бодож байна.\""]] },
+    { en: "Reporting / Evidential Passive", mn: "It is said/believed/thought that...", formation: "It + is/was + said/believed/reported + that + clause  |  Subject + is/was + said/believed + to + V1/have V3",
+      usage: ["Мэдээллийн эх сурвалжийг тодорхойгүй, найдвартай байдлыг хадгалсан хэвээр илэрхийлэхэд ашиглана.", "Хоёр дахь бүтэц нь эхнийхээс илүү товч, эрдэм шинжилгээний өгүүлбэрт элбэг."],
+      examples: [["It is widely believed that the ancient city was destroyed by an earthquake.", "Эртний хот газар хөдлөлтөөр устсан гэж өргөнөөр итгэдэг."], ["The suspect is alleged to have fled the country.", "Сэжигтэн улс орноосоо зугтсан гэж мэдэгдэж байна."], ["The reforms are said to have significantly improved the economy.", "Шинэчлэлүүд эдийн засгийг мэдэгдэхүйц сайжруулсан гэж ярьдаг."]] },
+    { en: "Hedging & Academic Vagueness", mn: "Тодорхойгүй байдлыг зөөлрүүлэн илэрхийлэх", formation: "seem to / tend to / appear to + V1  |  arguably / presumably / ostensibly + adj/clause",
+      usage: ["Баталгаагүй, хэт хатуу дүгнэлт хийхээс зайлсхийж, эрдэм шинжилгээний хэлэнд итгэл үнэмшлийг зөөлрүүлэн илэрхийлэхэд ашиглана.", "Ийм hedging хэллэгүүд нь IELTS/академик бичихэд өндөр оноо авах гол шинж чанаруудын нэг."],
+      examples: [["The policy appears to have had a limited impact on unemployment.", "Уг бодлого ажилгүйдэлд харьцангуй бага нөлөө үзүүлсэн бололтой."], ["This is arguably the most significant discovery of the decade.", "Энэ бол магадгүй энэ арван жилийн хамгийн чухал нээлт байх."], ["Ostensibly a routine inspection, the visit was in fact a covert investigation.", "Гадарлаа ердийн шалгалт мэт боловч, энэ айлчлал үнэндээ нууц мөрдөн байцаалт байв."]] },
+    { en: "Advanced Discourse Markers", mn: "Дискурсийн холбоос үгс", formation: "Nonetheless / Notwithstanding / By the same token / In light of / Conversely / That said / Insofar as",
+      usage: ["Урт, нарийн бүтэцтэй, олон давхар маргаантай текстэд санааны хоорондын нарийн ялгаа, харьцааг тодруулахад ашиглана.", "'Notwithstanding' нь albeit/despite-ийн албан ёсны хувилбар."],
+      examples: [["Notwithstanding the criticism, the government proceeded with the plan.", "Шүүмжлэлийг үл харгалзан засгийн газар төлөвлөгөөгөө үргэлжлүүлэв."], ["The results were disappointing. That said, valuable lessons were learned.", "Үр дүн урам хугарам байсан. Гэсэн хэдий ч, үнэ цэнэтэй сургамж авсан."], ["Insofar as the data allows, we can draw preliminary conclusions.", "Өгөгдөл зөвшөөрөх хэмжээнд бид урьдчилсан дүгнэлт хийж болно."]] },
+    { en: "Absolute Participle Constructions", mn: "With/Without + Noun + Participle", formation: "With/Without + noun + present/past participle/adjective/prepositional phrase, main clause",
+      usage: ["Энэ гишүүн (noun) нь толгой өгүүлбэрийн эзэнтэй ижил биш байж болно (absolute construction).", "Нөхцөл байдлыг маш нягт, уран сайхны хэлбэрээр илэрхийлэхэд ашиглана."],
+      examples: [["With the deadline approaching, the team worked through the night.", "Хугацаа дөхөж байсан тул баг шөнөжингөө ажилласан."], ["Without a word being said, everyone understood the decision.", "Нэг ч үг хэлэлгүйгээр бүгд шийдвэрийг ойлгосон."], ["With her hands trembling, she opened the letter.", "Гараа чичирсэн байдалтай тэр захидлыг нээв."]] },
+    { en: "Fossilized Subjunctive Expressions", mn: "Тогтмол хэллэгүүд", formation: "Be that as it may  |  Suffice it to say  |  Come what may  |  Far be it from me to...",
+      usage: ["Эдгээр нь одоо ч subjunctive хэлбэрээ хадгалсан, хатуу тогтсон хэллэгүүд бөгөөд өндөр түвшний, зарим нь дипломат/эелдэг өнгөтэй хэрэглэгддэг.", "Эдгээрийг өөрчлөх боломжгүй — бүхэлд нь тогтмол хэллэг маягаар цээжлэх шаардлагатай."],
+      examples: [["Be that as it may, we must still meet the deadline.", "Тэгсэн ч гэсэн, бид хугацаанд багтах ёстой."], ["Suffice it to say, the meeting did not go well.", "Товчхондоо хэлэхэд, уулзалт сайн болоогүй."], ["Far be it from me to criticize, but the plan has flaws.", "Шүүмжлэх гэсэн бодолгүй ч гэсэн, төлөвлөгөөнд дутагдал бий."]] },
+    { en: "Advanced Comparative & Correlative Structures", mn: "Ахисан харьцуулсан бүтэц", formation: "The + comparative..., the + comparative...  |  Not so much X as Y  |  No less...than",
+      usage: ["Хоёр зүйлийн харьцангуй өөрчлөлт, ялгааг нарийвчлан тодорхойлоход ашиглана.", "'Not so much X as Y' — X биш харин Y гэдгийг онцолж харьцуулна."],
+      examples: [["The more complex the system, the harder it is to maintain.", "Систем хэдий чинээ нарийн төвөгтэй байна, төдий чинээ засварлахад хэцүү байдаг."], ["It was not so much a failure as a valuable learning experience.", "Энэ нь бүтэлгүйтэл гэхээсээ илүү үнэ цэнэтэй туршлага байсан юм."], ["The project required no less than three years of preparation.", "Уг төсөл гурван жилийн бэлтгэл шаардсан."]] },
+    { en: "Litotes & Understatement", mn: "Сөрөг үгээр эерэгийг илэрхийлэх", formation: "not un- + adjective  |  not without + noun  |  not exactly / hardly / by no means + adjective",
+      usage: ["Сөрөг үгсийг ашиглан эерэг санааг зөөлрүүлж, дипломат шинжтэй тодотгол хийхэд ашиглана.", "Litotes нь шууд эерэг үг хэлэхээс илүү нарийн, дэгжин мэдрэмж төрүүлдэг."],
+      examples: [["Her explanation was not unreasonable.", "Түүний тайлбар үндэслэлгүй биш байсан."], ["The project was not without its challenges.", "Уг төсөл бэрхшээлгүй байгаагүй."], ["His performance was by no means disappointing.", "Түүний тоглолт огтхон ч урам хугалам байгаагүй."]] },
+    { en: "Characteristic Would / Will", mn: "Тодорхойлолт, зан чанар илэрхийлэх", formation: "would/will + V1 (өнгөрсөн эсвэл одоогийн ердийн зан төлөвийг тодорхойлоход)",
+      usage: ["'Would' — өнгөрсөнд байнга давтагдаж байсан зан төлөвийг дурсамжийн өнгөтэйгээр илэрхийлнэ.", "'Will' (одоо цагт) — хүний зан чанар, ердийн шинж чанарыг тодорхойлно."],
+      examples: [["Every summer, we would spend weeks at my grandmother's farm.", "Зун бүр бид эмээгийнхээ фермд хэдэн долоо хоног өнгөрөөдөг байсан."], ["He'll sit there for hours without saying a word.", "Тэр хэдэн цагаар ч дуугүй сууж чаддаг."], ["She would always insist on paying the bill.", "Тэр үргэлж төлбөрөө өөрөө төлөхийг шаарддаг байсан."]] },
+    { en: "Idiomatic Modal Collocations", mn: "I dare say, as it were, so to speak", formation: "I dare say...  |  ..., as it were  |  ..., so to speak  |  For all intents and purposes",
+      usage: ["Эргэлзээ, зөөлрүүлэлт, зүйрлэл эсвэл өөрийн итгэл үнэмшлийг нэмэлт байдлаар илэрхийлэхэд ашиглагддаг.", "'as it were' / 'so to speak' — зүйрлэсэн хэллэгийг ашиглаж байгаагаа зөөлрүүлж тэмдэглэнэ."],
+      examples: [["I dare say he'll regret that decision eventually.", "Тэр эцэст нь энэ шийдвэрээ гэмшинэ гэдэгт би итгэлтэй байна."], ["He became, as it were, a father figure to the whole team.", "Тэр багийнхандаа, тодорхой утгаараа, эцгийн дүр болсон юм."], ["For all intents and purposes, the negotiations have collapsed.", "Үнэн хэрэгтээ хэлэлцээр бүрэн задарсан гэж хэлж болно."]] },
+  ],
+};
+</script>
+<script>
+const QUESTIONS = {
+  a1: [
+    { topic: "Verb 'To Be'", prompt: "\"She _ a doctor.\" — зөв хувилбарыг сонго.",
+      options: ["am", "is", "are", "be"], correct: 1,
+      explain: "He/She/It-ийн хамт 'to be' үйл үгийн 'is' хэлбэрийг хэрэглэнэ." },
+    { topic: "Present Simple", prompt: "\"He _ to school every day.\" — зөв хувилбарыг сонго.",
+      options: ["go", "goes", "going", "gone"], correct: 1,
+      explain: "He/She/It-ийн үед Present Simple-д үйл үгэнд -s/-es нэмнэ: he goes." },
+    { topic: "Articles A/An/The", prompt: "\"I saw _ elephant at the zoo.\" — зөв тодорхойлогчийг сонго.",
+      options: ["a", "an", "the", "—"], correct: 1,
+      explain: "'elephant' эгшиг авиагаар эхэлдэг тул 'an' хэрэглэнэ." },
+    { topic: "Plural Nouns", prompt: "\"There are three _ in the room.\" (child) — олон тооны зөв хэлбэрийг сонго.",
+      options: ["childs", "childes", "children", "child"], correct: 2,
+      explain: "'child' нь тогтворгүй олон тооны хэлбэртэй — children." },
+    { topic: "There is/are", prompt: "\"_ a book on the table.\" — зөв хувилбарыг сонго.",
+      options: ["There is", "There are", "Is there", "Are there"], correct: 0,
+      explain: "Ганц тооны нэрийн ('a book') өмнө 'There is' хэрэглэнэ." },
+    { topic: "Can", prompt: "\"_ you swim?\" — чадварын тухай асуухдаа юу ашиглах вэ?",
+      options: ["Do", "Can", "Are", "Will"], correct: 1,
+      explain: "Чадвар асуухдаа 'Can' модаль үйл үгийг хэрэглэнэ." },
+  ],
+  a2: [
+    { topic: "Past Simple", prompt: "\"She _ to Paris last year.\" — зөв хувилбарыг сонго.",
+      options: ["go", "goes", "went", "gone"], correct: 2,
+      explain: "'go' тогтворгүй үйл үг: 2-р хэлбэр нь 'went'." },
+    { topic: "Past Continuous", prompt: "\"I _ cooking when he arrived.\" — зөв хувилбарыг сонго.",
+      options: ["was", "were", "am", "is"], correct: 0,
+      explain: "'I'-тэй Past Continuous-д 'was' хэрэглэнэ: I was cooking." },
+    { topic: "Comparative Adjectives", prompt: "\"This book is _ than that one.\" (interesting)",
+      options: ["interestinger", "more interesting", "most interesting", "interestingest"], correct: 1,
+      explain: "Урт тэмдэг нэрийн харьцуулах зэрэг: more + adjective." },
+    { topic: "Future: Will", prompt: "\"I think it _ rain tomorrow.\" — ерөнхий таамаглал.",
+      options: ["is going to", "will", "going", "would"], correct: 1,
+      explain: "Тухайн мөчид үүссэн бодол дээр үндэслэсэн ерөнхий таамаглалд 'will' хэрэглэнэ." },
+    { topic: "Present Perfect", prompt: "\"_ you ever tried sushi?\" — зөв туслах үйл үгийг сонго.",
+      options: ["Do", "Did", "Have", "Has"], correct: 2,
+      explain: "'you'-тай Present Perfect-ийн асуултад 'Have' хэрэглэнэ." },
+    { topic: "Modal Verbs of Obligation", prompt: "\"You _ wear a seatbelt.\" (энэ бол хуулиар тогтоосон дүрэм)",
+      options: ["should", "must", "have to", "could"], correct: 2,
+      explain: "Гаднын дүрэм, хууль журмаар тавигдсан үүргийг 'have to'-гоор илэрхийлнэ." },
+  ],
+  b1: [
+    { topic: "Present Perfect vs Past Simple", prompt: "\"I _ my keys yesterday, but I found them.\" — тодорхой цаг ('yesterday') байгаа тул.",
+      options: ["have lost", "lost", "had lost", "was losing"], correct: 1,
+      explain: "Тодорхой цаг заасан ('yesterday') тул Present Perfect биш, Past Simple хэрэглэнэ." },
+    { topic: "First Conditional", prompt: "\"If it rains, I _ stay home.\" — зөв хувилбарыг сонго.",
+      options: ["will", "would", "am", "was"], correct: 0,
+      explain: "First Conditional: If + Present Simple, will + V1." },
+    { topic: "Second Conditional", prompt: "\"If I _ more money, I would travel more.\" — зөв хувилбарыг сонго.",
+      options: ["have", "had", "has", "having"], correct: 1,
+      explain: "Second Conditional: If + Past Simple, would + V1 — бодит бус одоогийн нөхцөл." },
+    { topic: "Passive Voice", prompt: "\"This bridge _ in 1990.\" — идэвхгүй хэлбэрийг сонго.",
+      options: ["built", "was built", "is built", "has built"], correct: 1,
+      explain: "Өнгөрсөн цагийн идэвхгүй хэлбэр: was/were + V3." },
+    { topic: "Reported Speech", prompt: "\"I am tired,\" she said. → She said she _ tired.",
+      options: ["is", "was", "be", "were"], correct: 1,
+      explain: "Шилжүүлсэн ярианд цаг нэг шат ухарна: am → was." },
+    { topic: "Modal Verbs of Deduction", prompt: "\"He _ be at work now.\" (маш итгэлтэй эерэг таамаглал)",
+      options: ["might", "could", "must", "may"], correct: 2,
+      explain: "Маш итгэлтэй эерэг таамаглалд 'must' хэрэглэнэ." },
+  ],
+  b2: [
+    { topic: "Past Perfect", prompt: "\"When I arrived, the meeting _ already started.\" — зөв хувилбарыг сонго.",
+      options: ["has", "had", "was", "is"], correct: 1,
+      explain: "Өнгөрсний өөр нэг цэгээс өмнө дууссан үйлдэлд Past Perfect (had + V3) хэрэглэнэ." },
+    { topic: "Reported Questions", prompt: "\"Are you coming?\" → He asked if I _ coming.",
+      options: ["am", "was", "were", "is"], correct: 1,
+      explain: "Шилжүүлсэн асуултад цаг ухарна: am → was." },
+    { topic: "Relative Clauses (Non-defining)", prompt: "\"My brother, _ lives in London, is visiting us.\" — зөв харьцангуй үгийг сонго.",
+      options: ["that", "which", "who", "whom"], correct: 2,
+      explain: "Хүнийг тодорхойлох non-defining clause-д 'who' хэрэглэнэ; 'that' энд хэрэглэгддэггүй." },
+    { topic: "Future Perfect", prompt: "\"By next year, I _ graduated.\" — зөв хувилбарыг сонго.",
+      options: ["will", "will have", "have", "had"], correct: 1,
+      explain: "Ирээдүйн тодорхой цэг гэхэд дуусах үйлдэл: will have + V3." },
+    { topic: "Get used to", prompt: "\"She is _ used to the new job.\" — 'дасаж байгаа явц'-ыг илэрхийлэх зөв хэлбэрийг сонго.",
+      options: ["get", "gets", "getting", "got"], correct: 2,
+      explain: "'be getting used to' — дасаж буй явцыг илэрхийлнэ." },
+    { topic: "Mustn't vs Don't have to", prompt: "\"You _ come if you're busy.\" (шаардлагагүй, гэхдээ хориотой биш)",
+      options: ["mustn't", "don't have to", "can't", "shouldn't"], correct: 1,
+      explain: "'don't have to' — хийх шаардлагагүй гэсэн утгатай, харин 'mustn't' хориг заана." },
+  ],
+  c1: [
+    { topic: "Third Conditional", prompt: "\"If I _ harder, I would have passed the exam.\" — зөв хувилбарыг сонго.",
+      options: ["study", "studied", "had studied", "have studied"], correct: 2,
+      explain: "Third Conditional: If + Past Perfect, would have + V3." },
+    { topic: "Wish", prompt: "\"I wish I _ French.\" (одоогийн бодит бус хүсэл)",
+      options: ["speak", "spoke", "had spoken", "will speak"], correct: 1,
+      explain: "Одоогийн бодит бус байдалд харамсахдаа wish + Past Simple хэрэглэнэ." },
+    { topic: "Inversion", prompt: "\"_ have I seen such a beautiful sunset.\" — онцлохын тулд эргүүлсэн дараалал.",
+      options: ["Ever", "Never", "Not", "Already"], correct: 1,
+      explain: "'Never' эхэнд ирэхэд туслах үйл үг + эзэн дараалал эргэдэг: Never have I seen..." },
+    { topic: "Causative Form", prompt: "\"I _ my hair cut yesterday.\" — өөр хүнээр хийлгэсэн зүйлийг илэрхийл.",
+      options: ["had", "have", "did", "made"], correct: 0,
+      explain: "Causative form: have + object + V3 — 'I had my hair cut'." },
+    { topic: "Past Modals", prompt: "\"You _ told me earlier.\" (өнгөрсөнд хийгээгүй зүйлд шүүмжлэл)",
+      options: ["should have", "should", "must have", "would have"], correct: 0,
+      explain: "Өнгөрсөнд хийх ёстой байсан ч хийгээгүй зүйлд 'should have + V3' хэрэглэнэ." },
+    { topic: "Subjunctive Mood", prompt: "\"It is essential that every student _ the form.\" — зөв хувилбарыг сонго.",
+      options: ["submits", "submit", "submitted", "submitting"], correct: 1,
+      explain: "Subjunctive mood-д that-ийн дараах үйл үг хувирдаггүй — үндсэн хэлбэрээрээ үлдэнэ: submit." },
+  ],
+  c2: [
+    { topic: "Advanced Inversion", prompt: "\"_ the negotiations to fail, the entire agreement would collapse.\" — If-гүй нөхцөлт эргүүлэлт.",
+      options: ["If", "Were", "Should", "Had"], correct: 1,
+      explain: "'If'-ийг хассан нөхцөлт эргүүлэлт: Were + subject + to V1, ... (маш албан ёсны хэлбэр)." },
+    { topic: "Fronting", prompt: "\"Equally important _ the question of funding.\" — гишүүнийг урагшлуулсан бүтэц.",
+      options: ["is", "are", "be", "was"], correct: 0,
+      explain: "'the question of funding' ганц тоо тул нэгэн тоон хэлбэрийн 'is' хэрэглэнэ." },
+    { topic: "Litotes", prompt: "\"Her explanation was not _ .\" — сөрөг үгээр эерэгийг илэрхийлэх (litotes).",
+      options: ["unreasonable", "reasonable", "reasonably", "unreason"], correct: 0,
+      explain: "'not unreasonable' — сөрөг угтвар нэмсэн тэмдэг нэрийг 'not'-той хослуулан зөөлрүүлсэн эерэг санааг илэрхийлнэ." },
+    { topic: "Evidential Passive", prompt: "\"The suspect _ to have fled the country.\" — эх сурвалж тодорхойгүй мэдээллийг илэрхийл.",
+      options: ["is alleged", "alleges", "is alleging", "alleged"], correct: 0,
+      explain: "Evidential passive: Subject + is/was + alleged/believed + to have + V3." },
+    { topic: "Correlative Structures", prompt: "\"The more complex the system, _ it is to maintain.\" — зөв хувилбарыг сонго.",
+      options: ["the harder", "harder", "more hard", "hardest"], correct: 0,
+      explain: "'The + comparative..., the + comparative...' — хос харьцуулсан бүтэц." },
+    { topic: "Characteristic Would", prompt: "\"Every summer, we _ spend weeks at my grandmother's farm.\" — өнгөрсний давтагдсан зуршил.",
+      options: ["would", "will", "are", "were"], correct: 0,
+      explain: "'Would' нь өнгөрсөнд байнга давтагдаж байсан зан төлөвийг дурсамжийн өнгөөр илэрхийлнэ." },
+  ],
+};
+</script>
+<script>
+(function(){
+  const staircaseEl = document.getElementById('staircase');
+  const topicListEl = document.getElementById('topicList');
+  const lvTitle = document.getElementById('lvTitle');
+  const lvDesc = document.getElementById('lvDesc');
+  const lvEyebrow = document.getElementById('lvEyebrow');
+  const topicCount = document.getElementById('topicCount');
+  const searchInput = document.getElementById('searchInput');
+  const root = document.documentElement;
+  const brandAccent = document.getElementById('brandAccent');
+  const brandLogo = document.getElementById('brandLogo');
+  const levelHead = document.getElementById('levelHead');
+  const celebratePop = document.getElementById('celebratePop');
+  const celebrateMsg = document.getElementById('celebrateMsg');
+  const sidebarMascotMsg = document.getElementById('sidebarMascotMsg');
+  const sidebarNote = document.getElementById('sidebarNote');
+  const dictView = document.getElementById('dictView');
+  const quizView = document.getElementById('quizView');
+  const modeDictBtn = document.getElementById('modeDictBtn');
+  const modeQuizBtn = document.getElementById('modeQuizBtn');
+  const quizLevelFilter = document.getElementById('quizLevelFilter');
+  const quizProgressBar = document.getElementById('quizProgressBar');
+  const quizProgressFill = document.getElementById('quizProgressFill');
+  const quizArea = document.getElementById('quizArea');
+  const growthTreeWrap = document.getElementById('growthTreeWrap');
+  const growthTreeSvg = document.getElementById('growthTreeSvg');
+  const growthLabel = document.getElementById('growthLabel');
+  const growthSub = document.getElementById('growthSub');
+
+  const PHRASES = [
+    "Гайхалтай сонголт! 🎉", "Чи чадна! 💪", "Од шиг гэрэлтлээ! ✨",
+    "Шинэ дүрэм олж мэдлээ! 📖", "Баяр хүргэе! 🥳", "Сайн хийж байна! 🌟",
+    "Үргэлжлүүл, тэсрэлттэй байна! 🚀", "Мундаг, дараагийнхыг үзье! 🔥",
+    "Тэсрэлттэй сурч байна! 🧠", "Дүрэм эзэмшлээ, азаа! 🍀",
+  ];
+  const SIDEBAR_PHRASES = [
+    "Сайн уу! Би Буж — өнөөдөр ямар дүрэм сурах вэ? 📖",
+    "Дараагийн дүрмээ сонгоод эхэлцгээе! 🚀",
+    "Чи маш сайн явж байна, үргэлжлүүл! 🌟",
+    "Түвшингээ сонгоод дасгал хийцгээе! 🎯",
+  ];
+  const QUIZ_CORRECT_PHRASES = ["Зөв! Гайхалтай байна! 🎉", "Мундаг! 💪", "Яг тааллаа! ✨", "Сайн байна! 🌟"];
+  const QUIZ_WRONG_PHRASES = ["Дахин оролдоорой! 🌱", "Ойрхон байлаа! 📖", "Дараагийн асуултад анхаараарай 🧠"];
+  sidebarMascotMsg.textContent = SIDEBAR_PHRASES[Math.floor(Math.random() * SIDEBAR_PHRASES.length)];
+
+  const SPARK_EMOJI = ["✨","⭐","🌟","💫","✦"];
+  function burstSparkles(originEl){
+    const rect = originEl.getBoundingClientRect();
+    const cx = rect.left + rect.width * 0.85;
+    const cy = rect.top + rect.height / 2;
+    const count = 7;
+    for(let i=0;i<count;i++){
+      const el = document.createElement('div');
+      el.className = 'sparkle';
+      el.textContent = SPARK_EMOJI[Math.floor(Math.random()*SPARK_EMOJI.length)];
+      const angle = (Math.PI * 2 * i) / count + Math.random()*0.4;
+      const dist = 40 + Math.random()*35;
+      const dx = Math.cos(angle)*dist;
+      const dy = Math.sin(angle)*dist;
+      el.style.left = cx + 'px';
+      el.style.top = cy + 'px';
+      el.style.setProperty('--sp-end', translate(${dx}px, ${dy}px));
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 750);
+    }
+  }
+
+  let celebrateTimer;
+  function celebrate(originEl, text){
+    burstSparkles(originEl);
+    celebrateMsg.textContent = text || PHRASES[Math.floor(Math.random() * PHRASES.length)];
+    celebratePop.classList.add('show');
+    clearTimeout(celebrateTimer);
+    celebrateTimer = setTimeout(() => celebratePop.classList.remove('show'), 2200);
+  }
+
+  const descriptions = {
+    a1: "Хамгийн энгийн, суурь дүрмүүд — өдөр тутмын харилцаанд шаардлагатай эхлэлийн блокууд.",
+    a2: "Суурь дүрмээ бататгаж, өнгөрсөн, ирээдүй цагийг харилцан уялдуулан хэрэглэж эхэлнэ.",
+    b1: "Илүү нарийвчилсан цаг хугацаа, нөхцөлт өгүүлбэр, идэвхгүй хэлбэрийг эзэмшинэ.",
+    b2: "Нарийн ялгаатай утга, шилжүүлсэн яриа, харьцангуй өгүүлбэрийн бүх төрлийг ашиглаж сурна.",
+    c1: "Албан ёсны, эрдэм шинжилгээний хэв маягт зориулсан ахисан бүтэц, эргүүлэлт, subjunctive.",
+    c2: "Төрөлх хэлтний түвшний нарийн шинж — hedging, litotes, тогтмол хэллэг, стилист бүтцүүд.",
+  };
+
+  let totalTopics = 0;
+  Object.values(TOPICS).forEach(arr => totalTopics += arr.length);
+  document.getElementById('totalCount').textContent = totalTopics;
+
+  /* ================= Mode switching ================= */
+  let currentMode = 'dict';
+  function setMode(mode){
+    currentMode = mode;
+    modeDictBtn.classList.toggle('active', mode === 'dict');
+    modeQuizBtn.classList.toggle('active', mode === 'quiz');
+    dictView.classList.toggle('hidden', mode !== 'dict');
+    quizView.classList.toggle('hidden', mode !== 'quiz');
+    staircaseEl.classList.toggle('hidden', mode !== 'dict');
+    sidebarNote.classList.toggle('hidden', mode !== 'dict');
+    growthTreeWrap.classList.toggle('hidden', mode !== 'quiz');
+    if(mode === 'quiz'){
+      applyLevelColor(levelById('a1'));
+      renderQuizFilter();
+    } else {
+      applyLevelColor(levelById(currentLevel));
+    }
+  }
+  modeDictBtn.addEventListener('click', () => setMode('dict'));
+  modeQuizBtn.addEventListener('click', () => setMode('quiz'));
+
+  // Build staircase nav
+  LEVELS.forEach((lv, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'step-btn';
+    btn.dataset.level = lv.id;
+    btn.dataset.i = i;
+    btn.style.setProperty('--lv-color', lv.color);
+    btn.style.setProperty('--lv-color-soft', lv.color + '1A');
+    btn.style.setProperty('--lv-color-border', lv.color + '40');
+    btn.innerHTML = <span class="lv-icon">${lv.icon}</span><span class="lv-name">${lv.name}</span><span class="lv-label">${lv.label}</span>;
+    btn.addEventListener('click', () => selectLevel(lv.id));
+    staircaseEl.appendChild(btn);
+  });
+
+  function escRe(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+  function highlight(text, q){
+    if(!q) return text;
+    const re = new RegExp('(' + escRe(q) + ')', 'ig');
+    return text.replace(re, '<mark>$1</mark>');
+  }
+
+  function levelById(id){ return LEVELS.find(l => l.id === id); }
+
+  function applyLevelColor(lv){
+    root.style.setProperty('--accent', lv.color);
+    root.style.setProperty('--accent-soft', lv.color + '22');
+    root.style.setProperty('--accent-softer', lv.color + '0D');
+    brandAccent.style.color = lv.color;
+    brandLogo.style.color = lv.color;
+  }
+
+  let currentLevel = 'a1';
+  let currentQuery = '';
+
+  function selectLevel(id){
+    currentLevel = id;
+    currentQuery = '';
+    searchInput.value = '';
+    render();
+    document.querySelectorAll('.step-btn').forEach(b => b.classList.toggle('active', b.dataset.level === id));
+  }
+
+  function renderTopic(topic, idx, levelId, query){
+    const lv = levelById(levelId);
+    const wrap = document.createElement('div');
+    wrap.className = 'topic';
+
+    const header = document.createElement('button');
+    header.className = 'topic-header';
+    header.innerHTML = `
+      <span class="topic-num">${String(idx+1).padStart(2,'0')}</span>
+      <span class="topic-titles">
+        <div class="t-en">${highlight(topic.en, query)}</div>
+        <div class="t-mn">${highlight(topic.mn, query)}</div>
+      </span>
+      <span class="topic-level-chip" style="background:${lv.color}1A;color:${lv.color}">${lv.name}</span>
+      <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    `;
+
+    const body = document.createElement('div');
+    body.className = 'topic-body';
+    const inner = document.createElement('div');
+    inner.className = 'topic-body-inner';
+
+    inner.innerHTML = `
+      <div class="block-label"><span>Бүтэц</span><span class="en">Formation</span></div>
+      <div class="formation-box" style="border-left-color:${lv.color}">${topic.formation}</div>
+
+      <div class="block-label"><span>Хэрэглээ</span><span class="en">Usage</span></div>
+      <ul class="usage-list">${topic.usage.map(u => <li>${highlight(u, query)}</li>).join('')}</ul>
+
+      <div class="block-label"><span>Жишээ өгүүлбэр</span><span class="en">Examples</span></div>
+      ${topic.examples.map(([en, mn]) => `
+        <div class="example">
+          <div class="ex-en">${highlight(en, query)}</div>
+          <div class="ex-mn">${highlight(mn, query)}</div>
+        </div>
+      `).join('')}
+    `;
+    body.appendChild(inner);
+
+    header.addEventListener('click', () => {
+      const isOpen = wrap.classList.contains('open');
+      if(isOpen){
+        wrap.classList.remove('open');
+        body.style.maxHeight = null;
+      } else {
+        wrap.classList.add('open');
+        body.style.maxHeight = body.scrollHeight + 'px';
+        celebrate(header);
+      }
+    });
+
+    wrap.appendChild(header);
+    wrap.appendChild(body);
+    return wrap;
+  }
+
+  function matches(topic, q){
+    if(!q) return true;
+    q = q.toLowerCase();
+    const hay = [topic.en, topic.mn, topic.formation, ...topic.usage, ...topic.examples.flat()].join(' ').toLowerCase();
+    return hay.includes(q);
+  }
+
+  function render(){
+    topicListEl.innerHTML = '';
+
+    if(currentQuery){
+      // search mode: across all levels
+      levelHead.classList.add('search-mode');
+      topicListEl.classList.add('search-active');
+      lvEyebrow.textContent = 'Хайлтын үр дүн';
+      lvTitle.textContent = \u201C${currentQuery}\u201D хайлт;
+      lvDesc.textContent = 'Бүх түвшингээс тохирох дүрмүүдийг доор харуулав.';
+
+      let results = [];
+      LEVELS.forEach(lv => {
+        TOPICS[lv.id].forEach((t, i) => {
+          if(matches(t, currentQuery)) results.push({t, i, lv: lv.id});
+        });
+      });
+
+      topicCount.textContent = ${results.length} тохирол олдлоо;
+
+      if(results.length === 0){
+        const empty = document.createElement('div');
+        empty.className = 'empty-state';
+        empty.innerHTML = <h3>Илэрц олдсонгүй</h3><p>Өөр түлхүүр үгээр хайж үзнэ үү.</p>;
+        topicListEl.appendChild(empty);
+      } else {
+        results.forEach(r => topicListEl.appendChild(renderTopic(r.t, r.i, r.lv, currentQuery)));
+      }
+    } else {
+      topicListEl.classList.remove('search-active');
+      const lv = levelById(currentLevel);
+      applyLevelColor(lv);
+      lvEyebrow.textContent = ${lv.name} · ${lv.sub};
+      lvTitle.textContent = lv.label;
+      lvDesc.textContent = descriptions[lv.id];
+      const topics = TOPICS[currentLevel];
+      topicCount.textContent = ${topics.length} дүрэм;
+      topics.forEach((t, i) => topicListEl.appendChild(renderTopic(t, i, currentLevel, '')));
+    }
+  }
+
+  let searchTimer;
+  searchInput.addEventListener('input', (e) => {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => {
+      currentQuery = e.target.value.trim();
+      document.querySelectorAll('.step-btn').forEach(b => b.classList.remove('active'));
+      render();
+    }, 150);
+  });
+
+  /* ================= Growth tree ================= */
+  let growthCount = 0;
+  const GROWTH_STAGES = [
+    { min: 0,  label: "Үр",              sub: "Зөв хариулах тусам ургана" },
+    { min: 1,  label: "Соёолж байна",     sub: "Анхны үндэс ургалаа" },
+    { min: 3,  label: "Мөчирлөж байна",   sub: "Жижиг мөчрүүд гарч байна" },
+    { min: 6,  label: "Навчална",         sub: "Навчнууд бүрхэж байна" },
+    { min: 10, label: "Цэцэглэж байна",   sub: "Цэцэг дэлгэрч эхэллээ" },
+    { min: 14, label: "Бүрэн цэцэглэлээ", sub: "Гайхалтай — модоо бүтээлээ! 🌳" },
+  ];
+  function growthStageFor(n){
+    let s = GROWTH_STAGES[0];
+    for(const st of GROWTH_STAGES){ if(n >= st.min) s = st; }
+    return s;
+  }
+  function drawGrowthTree(n, justGrew){
+    const leafCount = Math.min(n, 12);
+    const trunkH = 24 + Math.min(n, 12) * 7;
+    const baseX = 80, baseY = 158;
+    const topY = baseY - trunkH;
+    const sway = 6;
+    const trunkPath = M ${baseX-6} ${baseY} Q ${baseX-sway} ${baseY - trunkH*0.55} ${baseX} ${topY};
+
+    let leavesSvg = '';
+    for(let i=0;i<leafCount;i++){
+      const side = i % 2 === 0 ? -1 : 1;
+      const rung = Math.floor(i/2);
+      const ly = baseY - 30 - rung*20;
+      const lx = baseX + side*(16 + rung*4);
+      const rot = side * (35 + rung*4);
+      const isLast = justGrew && i === leafCount-1;
+      leavesSvg += <ellipse class="${isLast?'leaf-pop':''}" cx="${lx}" cy="${ly}" rx="11" ry="6.5" fill="var(--accent)" opacity="${0.55+ (rung*0.05)}" transform="rotate(${rot} ${lx} ${ly})"/>;
+    }
+
+    let bloomsSvg = '';
+    const bloomCount = Math.min(Math.max(n-12,0), 4);
+    const bloomSpots = [[baseX-20,topY+14],[baseX+18,topY+6],[baseX-4,topY-4],[baseX+8,topY+20]];
+    for(let i=0;i<bloomCount;i++){
+      const [bx,by] = bloomSpots[i];
+      const isLast = justGrew && i === bloomCount-1;
+      bloomsSvg += <circle class="${isLast?'bloom-pop':''}" cx="${bx}" cy="${by}" r="5.5" fill="#FDA4AF"/><circle cx="${bx}" cy="${by}" r="2" fill="#FBBF24"/>;
+    }
+
+    growthTreeSvg.innerHTML = `
+      <ellipse cx="${baseX}" cy="163" rx="34" ry="5" fill="#000" opacity=".06"/>
+      <path class="trunk-grow" d="${trunkPath}" stroke="#8B6A4A" stroke-width="7" fill="none" stroke-linecap="round"/>
+      ${leavesSvg}
+      ${bloomsSvg}
+      ${n===0 ? <circle cx="${baseX}" cy="${baseY-2}" r="4" fill="#8B6A4A"/> : ''}
+    `;
+
+    const stage = growthStageFor(n);
+    growthLabel.textContent = stage.label;
+    growthSub.textContent = stage.sub;
+  }
+
+  /* ================= Quiz mode ================= */
+  let selectedQuizLevels = new Set(LEVELS.map(l => l.id));
+  let quizQuestions = [];
+  let quizIndex = 0;
+  let quizScore = 0;
+  let quizAnswered = false;
+  let quizBreakdown = {};
+
+  function renderQuizFilter(){
+    quizLevelFilter.innerHTML = '';
+    const allChip = document.createElement('button');
+    allChip.className = 'lvl-chip' + (selectedQuizLevels.size === LEVELS.length ? ' active' : '');
+    allChip.textContent = 'Бүгд';
+    allChip.addEventListener('click', () => {
+      selectedQuizLevels = new Set(LEVELS.map(l => l.id));
+      renderQuizFilter();
+      startQuiz();
+    });
+    quizLevelFilter.appendChild(allChip);
+
+    LEVELS.forEach(lv => {
+      const chip = document.createElement('button');
+      chip.className = 'lvl-chip' + (selectedQuizLevels.has(lv.id) ? ' active' : '');
+      chip.textContent = ${lv.icon} ${lv.name};
+      chip.addEventListener('click', () => {
+        if(selectedQuizLevels.has(lv.id)){
+          if(selectedQuizLevels.size > 1) selectedQuizLevels.delete(lv.id);
+        } else {
+          selectedQuizLevels.add(lv.id);
+        }
+        renderQuizFilter();
+        startQuiz();
+      });
+      quizLevelFilter.appendChild(chip);
+    });
+    startQuiz();
+  }
+
+  function shuffle(arr){
+    const a = arr.slice();
+    for(let i = a.length - 1; i > 0; i--){
+      const j = Math.floor(Math.random() * (i+1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  function startQuiz(){
+    quizQuestions = [];
+    LEVELS.forEach(lv => {
+      if(selectedQuizLevels.has(lv.id)){
+        (QUESTIONS[lv.id] || []).forEach(q => quizQuestions.push(Object.assign({level: lv.id}, q)));
+      }
+    });
+    quizQuestions = shuffle(quizQuestions);
+    quizIndex = 0;
+    quizScore = 0;
+    quizAnswered = false;
+    quizBreakdown = {};
+    LEVELS.forEach(lv => { quizBreakdown[lv.id] = {correct: 0, total: 0}; });
+    growthCount = 0;
+    drawGrowthTree(growthCount, false);
+
+    if(quizQuestions.length === 0){
+      quizProgressBar.classList.add('hidden');
+      quizArea.innerHTML = <div class="quiz-empty"><h3 style="font-family:var(--serif);color:var(--ink);margin-bottom:6px;">Асуулт олдсонгүй</h3><p>Дор хаяж нэг түвшин сонгоно уу.</p></div>;
+      return;
+    }
+    quizProgressBar.classList.remove('hidden');
+    renderQuizQuestion();
+  }
+
+  function renderQuizQuestion(){
+    const q = quizQuestions[quizIndex];
+    const lv = levelById(q.level);
+    applyLevelColor(lv);
+    quizAnswered = false;
+
+    const pct = (quizIndex / quizQuestions.length) * 100;
+    quizProgressFill.style.width = pct + '%';
+
+    const card = document.createElement('div');
+    card.className = 'quiz-card';
+    card.innerHTML = `
+      <span class="q-level" style="color:${lv.color};background:${lv.color}10;border-color:${lv.color}22">${lv.name} · ${q.topic}</span>
+      <div class="q-count">Асуулт ${quizIndex+1} / ${quizQuestions.length}</div>
+      <div class="q-prompt">${q.prompt}</div>
+      <div id="quizOpts"></div>
+      <div class="explain" id="quizExplain">${q.explain}</div>
+      <div class="quiz-nav-row"><button class="next-btn" id="quizNextBtn">Дараах →</button></div>
+    `;
+    quizArea.innerHTML = '';
+    quizArea.appendChild(card);
+
+    const optsWrap = card.querySelector('#quizOpts');
+    q.options.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'opt';
+      btn.textContent = opt;
+      btn.addEventListener('click', () => {
+        if(quizAnswered) return;
+        quizAnswered = true;
+        const allOpts = optsWrap.querySelectorAll('.opt');
+        allOpts.forEach(o => o.disabled = true);
+        quizBreakdown[q.level].total++;
+        if(i === q.correct){
+          btn.classList.add('correct');
+          quizScore++;
+          quizBreakdown[q.level].correct++;
+          growthCount++;
+          drawGrowthTree(growthCount, true);
+          celebrate(btn, QUIZ_CORRECT_PHRASES[Math.floor(Math.random()*QUIZ_CORRECT_PHRASES.length)]);
+        } else {
+          btn.classList.add('incorrect');
+          allOpts[q.correct].classList.add('correct');
+          celebrate(btn, QUIZ_WRONG_PHRASES[Math.floor(Math.random()*QUIZ_WRONG_PHRASES.length)]);
+        }
+        card.querySelector('#quizExplain').classList.add('show');
+        card.querySelector('#quizNextBtn').classList.add('ready');
+      });
+      optsWrap.appendChild(btn);
+    });
+
+    card.querySelector('#quizNextBtn').addEventListener('click', () => {
+      if(!quizAnswered) return;
+      quizIndex++;
+      if(quizIndex >= quizQuestions.length){
+        renderQuizResult();
+      } else {
+        renderQuizQuestion();
+      }
+    });
+  }
+
+  function renderQuizResult(){
+    quizProgressFill.style.width = '100%';
+    const pct = Math.round((quizScore / quizQuestions.length) * 100);
+    const card = document.createElement('div');
+    card.className = 'quiz-card quiz-result';
+
+    const breakdownHtml = LEVELS
+      .filter(lv => quizBreakdown[lv.id].total > 0)
+      .map(lv => <div><span>${lv.icon} ${lv.name} · ${lv.label}</span><b>${quizBreakdown[lv.id].correct} / ${quizBreakdown[lv.id].total}</b></div>)
+      .join('');
+
+    card.innerHTML = `
+      <div class="score">${pct}%</div>
+      <p>${quizScore} / ${quizQuestions.length} асуултад зөв хариулав</p>
+      <div class="breakdown">${breakdownHtml}</div>
+      <button class="restart-btn" id="quizRestartBtn">Дахин эхлэх</button>
+    `;
+    quizArea.innerHTML = '';
+    quizArea.appendChild(card);
+    celebrate(card, "Тест дууслаа! Гайхалтай ажилласан шүү! 🎉");
+
+    card.querySelector('#quizRestartBtn').addEventListener('click', () => {
+      startQuiz();
+    });
+  }
+
+  // init
+  document.querySelector('.step-btn[data-level="a1"]').classList.add('active');
+  applyLevelColor(levelById('a1'));
+  render();
+})();
+</script>
+</body>
+</html>
